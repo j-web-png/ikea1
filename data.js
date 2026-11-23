@@ -42,10 +42,10 @@ window.ikeaFinancialData = {
         },
         {
             category: "Operating Profit",
-            fy25: 26.306, // Corrected from 26306
-            fy26: 25.864, // Corrected from 25864
-            absoluteChange: -0.442, // Calculated
-            percentChange: -1.68,  // Calculated
+            fy25: 26.306,
+            fy26: 25.864,
+            absoluteChange: -0.442,
+            percentChange: -1.68,
             description: "Operating result before financial items and tax."
         },
         {
@@ -59,14 +59,14 @@ window.ikeaFinancialData = {
     ],
     ratios: {
         fy25: {
-            operatingMargin: 100 * (26.306 / 26.30), // Recalculated based on correct OpProfit
-            netMargin: 5.69,
-            avgFTE: 25971
+            operatingMargin: 100.02,
+            netMargin: 5.69
+            // Average FTE removed
         },
         fy26: {
-            operatingMargin: 100 * (25.864 / 25.86), // Recalculated based on correct OpProfit
-            netMargin: 5.41,
-            avgFTE: 26826
+            operatingMargin: 100.02,
+            netMargin: 5.41
+            // Average FTE removed
         }
     }
 };
