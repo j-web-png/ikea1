@@ -17,7 +17,7 @@ window.ikeaFinancialData = {
     },
     metrics: [
         {
-            category: "Total Operating Income (Revenue)",
+            category: "Total Operating Income (Sales / Revenue)",
             fy25: 26.30,
             fy26: 25.86,
             absoluteChange: -0.44,
@@ -31,14 +31,6 @@ window.ikeaFinancialData = {
             absoluteChange: -0.67,
             percentChange: -3.15,
             description: "Direct procurement, manufacturing input, and supply-chain logistics costs."
-        },
-        {
-            category: "Other Operating Expenses & Labor",
-            fy25: 3.25,
-            fy26: 3.75,
-            absoluteChange: 0.50,
-            percentChange: 15.22,
-            description: "Includes wage inflation, digital system investments, and one-off organizational restructuring costs."
         },
         {
             category: "Operating Profit (EBIT)",
@@ -68,12 +60,5 @@ window.ikeaFinancialData = {
             netMargin: 5.41,
             avgFTE: 26826
         }
-    },
-    waterfallBridge: [
-        { label: "FY25 EBIT", value: 1.73, type: "total" },
-        { label: "Revenue Impact", value: -0.44, type: "negative" },
-        { label: "Material Savings", value: 0.67, type: "positive" },
-        { label: "OpEx & Restructuring Headwinds", value: -0.50, type: "negative" },
-        { label: "FY26 EBIT", value: 1.46, type: "total" }
-    ]
+    }
 };
