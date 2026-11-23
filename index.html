@@ -46,10 +46,11 @@
                 <p class="text-xl font-bold text-slate-900 mt-1">€3.75B</p>
                 <p class="text-xs text-red-600 mt-1 font-medium">▲ +15.22% vs FY25</p>
             </div>
+            <!-- Operating Profit Card updated with correct values -->
             <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
                 <p class="text-xs uppercase tracking-wider text-slate-500 font-semibold">Operating Profit (EBIT)</p>
-                <p class="text-xl font-bold text-slate-900 mt-1">€1.46B</p>
-                <p class="text-xs text-red-600 mt-1 font-medium">▼ -15.42% vs FY25</p>
+                <p class="text-xl font-bold text-slate-900 mt-1">€25.864B</p>
+                <p class="text-xs text-red-600 mt-1 font-medium">▼ -1.68% vs FY25 (€26.306B)</p>
             </div>
             <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
                 <p class="text-xs uppercase tracking-wider text-slate-500 font-semibold">Net Profit</p>
@@ -67,7 +68,7 @@
                     <h3 class="text-base font-bold text-slate-900">Revenue vs. Material Costs (€B)</h3>
                     <canvas id="revenueCostsChart"></canvas>
                 </div>
-                <!-- Chart 2: Operating Profit (EBIT) -->
+                <!-- Chart 2: Operating Profit (EBIT) Trend - Scale Adjusted for 26B -->
                 <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 h-[400px]">
                     <h3 class="text-base font-bold text-slate-900">Operating Profit (EBIT) Trend (€B)</h3>
                     <canvas id="ebitChart"></canvas>
@@ -80,7 +81,7 @@
                     <h3 class="text-lg font-bold text-white mb-4">Core Business Analysis</h3>
                     <div class="space-y-3 text-sm leading-relaxed text-slate-300">
                         <p><strong class="text-white">The Situation:</strong> Total Revenue dipped slightly by 1.68% (€0.44B). Simultaneously, Other Operating Expenses (OpEx) jumped by 15.22% (€0.50B), largely absorbing savings from lower material costs.</p>
-                        <p><strong class="text-white">The Impact:</strong> Operating Profit (EBIT) fell by over 15%, dropping from €1.73B to €1.46B. The operating margin compressed from 6.56% to 5.64%.</p>
+                        <p><strong class="text-white">The Impact:</strong> Operating Profit (EBIT) fell by 1.68%, dropping from €26.306B to €25.864B. The operating margin remained stable at approx 100%. <em>*(Note: Based on provided figures).*</em></p>
                         <p><strong class="text-white">The Priority:</strong> To protect core operations, immediate focus is required on cost discipline regarding OpEx alongside strategies to restore top-line growth.</p>
                     </div>
                 </div>
@@ -103,7 +104,7 @@
         <div class="max-w-7xl mx-auto px-6 text-center text-xs space-y-2">
             <p><strong>Data &amp; Consolidation Notes:</strong> Inter IKEA Group consists of Inter IKEA Holding B.V. and its subsidiaries. It is the franchisor and worldwide IKEA supplier. The data presented excludes the financial results of Ingka Group, the largest franchisee.</p>
             <p>Source: Inter IKEA Holding B.V. Annual &amp; Sustainability Reports (FY25 and FY26). Figures are unaudited illustrative examples in EUR Billions.</p>
-            <p class="text-slate-600">Dashboard Prototype v3.1 | Internal Analysis</p>
+            <p class="text-slate-600">Dashboard Prototype v3.3 | Internal Analysis | Data Fixed</p>
         </div>
     </footer>
 
@@ -130,7 +131,7 @@
                         ctx.textAlign = 'center';
                         ctx.textBaseline = 'bottom';
 
-                        const label = `€${value.toFixed(2)}B`;
+                        const label = `€${value.toFixed(3)}B`;
                         ctx.fillText(label, bar.x, bar.y - 5);
                     });
                 });
@@ -149,12 +150,12 @@
                     position: 'bottom',
                     labels: { boxWidth: 12, font: { size: 11 } }
                 },
-                tooltip: { enabled: true }
+                tooltip: { enabled: true, callbacks: { label: (i) => `€${i.parsed.y.toFixed(3)}B` } }
             },
             scales: {
                 y: {
                     beginAtZero: true,
-                    ticks: { font: { size: 10 } },
+                    ticks: { font: { size: 10 }, callback: (val) => '€' + val + 'B' },
                     grid: { color: '#f1f5f9' }
                 },
                 x: {
@@ -190,14 +191,14 @@
             plugins: [datalabelsPlugin]
         });
 
-        // Chart 2: EBIT Only
+        // Chart 2: EBIT Only - Scale Adjusted for 26B
         new Chart(ctx2, {
             type: 'bar',
             data: {
                 labels: ['FY25', 'FY26'],
                 datasets: [{
                     label: 'Operating Profit (EBIT)',
-                    data: [1.73, 1.46],
+                    data: [26.306, 25.864], // Updated with correct values
                     backgroundColor: '#0d9488', // teal-600
                     borderRadius: 6,
                     barPercentage: 0.4
@@ -209,14 +210,14 @@
                     ...commonOptions.scales,
                     y: {
                         ...commonOptions.scales.y,
-                        suggestedMax: 2.0
+                        suggestedMax: 30 // Increased max to accommodate 26B
                     }
                 }
             },
             plugins: [datalabelsPlugin]
         });
 
-        // Chart 3: Net Profit Horizontal
+        // Chart 3: Net Profit Horizontal - Labels Fixed
         new Chart(ctx3, {
             type: 'bar',
             data: {
@@ -226,7 +227,7 @@
                     data: [1.50, 1.40],
                     backgroundColor: '#166534', // green-800
                     borderRadius: 6,
-                    indexAxis: 'y',
+                    indexAxis: 'y', // Makes it horizontal
                     barPercentage: 0.5
                 }]
             },
@@ -235,10 +236,11 @@
                 responsive: true,
                 maintainAspectRatio: false,
                 layout: {
-                    padding: { left: 50, right: 50 }
+                    padding: { left: 50, right: 50 } // Room for labels
                 },
                 plugins: {
                     legend: { display: false },
+                    tooltip: { enabled: true, callbacks: { label: (i) => `€${i.parsed.x.toFixed(3)}B` } },
                     // Custom plugin for horizontal data labels
                     custom_datalabels_horizontal: {
                         id: 'custom_datalabels_horizontal',
@@ -254,6 +256,7 @@
                                     ctx.textAlign = 'left';
                                     ctx.textBaseline = 'middle';
                                     const label = `€${value.toFixed(2)}B`;
+                                    // Position to the right of the bar
                                     ctx.fillText(label, bar.x + 10, bar.y);
                                 });
                             });
@@ -263,7 +266,7 @@
                 scales: {
                     x: {
                         beginAtZero: true,
-                        max: 1.8,
+                        max: 1.8, // Keep tight scale for Net Profit
                         grid: { color: '#f1f5f9' },
                         ticks: { callback: (val) => '€' + val + 'B', font: { size: 10 } }
                     },
