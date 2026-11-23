@@ -17,7 +17,7 @@
         <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row justify-between items-start md:items-center">
             <div>
                 <h1 class="text-2xl md:text-3xl font-bold">Inter IKEA Group Financial Dashboard</h1>
-                <p class="text-blue-200 text-sm mt-1">Operating Income &amp; Cost Structure Analysis (EUR Billions)</p>
+                <p class="text-blue-200 text-sm mt-1">Sales, Raw Material Costs &amp; Profitability Analysis (EUR Billions)</p>
             </div>
             <div class="mt-4 md:mt-0 bg-blue-800 px-4 py-2 rounded-lg text-sm border border-blue-700">
                 <span class="font-semibold">Sample Size (N):</span> 2 Years | <span class="font-semibold">Source:</span> FY25 and FY26 Annual Reports
@@ -30,19 +30,19 @@
         <!-- Key Metrics Cards -->
         <section class="grid grid-cols-1 md:grid-cols-4 gap-6">
             <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
-                <p class="text-xs uppercase tracking-wider text-slate-500 font-semibold">Total Revenue</p>
+                <p class="text-xs uppercase tracking-wider text-slate-500 font-semibold">Sales (Total Revenue)</p>
                 <p class="text-2xl font-bold text-slate-900 mt-2">€25.86B</p>
                 <p class="text-xs text-red-600 mt-1 font-medium">▼ -1.68% vs FY25 (€26.30B)</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                <p class="text-xs uppercase tracking-wider text-slate-500 font-semibold">Raw Material Costs</p>
+                <p class="text-2xl font-bold text-slate-900 mt-2">€20.66B</p>
+                <p class="text-xs text-emerald-700 mt-1 font-medium">▼ -3.15% vs FY25 (€21.33B)</p>
             </div>
             <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
                 <p class="text-xs uppercase tracking-wider text-slate-500 font-semibold">Operating Profit (EBIT)</p>
                 <p class="text-2xl font-bold text-slate-900 mt-2">€1.46B</p>
                 <p class="text-xs text-red-600 mt-1 font-medium">▼ -15.42% vs FY25 (€1.73B)</p>
-            </div>
-            <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
-                <p class="text-xs uppercase tracking-wider text-slate-500 font-semibold">Operating Margin</p>
-                <p class="text-2xl font-bold text-slate-900 mt-2">5.64%</p>
-                <p class="text-xs text-red-600 mt-1 font-medium">▼ -0.92 pp vs FY25 (6.56%)</p>
             </div>
             <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
                 <p class="text-xs uppercase tracking-wider text-slate-500 font-semibold">Net Profit</p>
@@ -52,20 +52,29 @@
         </section>
 
         <!-- Charts Section (Grouped Visualizations) -->
-        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <!-- Chart 1: Revenue, Raw Material Costs & OpEx Grouped by Category -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Chart 1: Sales & Raw Material Costs Grouped by Category -->
             <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
-                <h3 class="text-lg font-bold text-slate-900 mb-2">Revenue, Raw Materials &amp; OpEx by Category (€B)</h3>
-                <p class="text-sm text-slate-600 mb-4">Grouped side-by-side by category with colors distinguishing FY25 and FY26.</p>
+                <h3 class="text-lg font-bold text-slate-900 mb-2">Sales &amp; Raw Materials by Category (€B)</h3>
+                <p class="text-sm text-slate-600 mb-4">Grouped by category with colors distinguishing FY25 and FY26.</p>
                 <div class="relative h-80">
-                    <canvas id="costStructureChart"></canvas>
+                    <canvas id="revenueMaterialsChart"></canvas>
                 </div>
             </div>
 
-            <!-- Chart 2: Dedicated Profitability Metrics (EBIT & Net Profit) -->
+            <!-- Chart 2: Dedicated Sales Comparison (FY25 vs FY26) -->
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                <h3 class="text-lg font-bold text-slate-900 mb-2">Sales Performance: FY25 vs. FY26 (€B)</h3>
+                <p class="text-sm text-slate-600 mb-4">Direct year-over-year comparison of total sales / operating income.</p>
+                <div class="relative h-80">
+                    <canvas id="salesChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Chart 3: Profitability Metrics (EBIT & Net Profit) -->
             <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
                 <h3 class="text-lg font-bold text-slate-900 mb-2">Profitability Focus: EBIT &amp; Net Profit (€B)</h3>
-                <p class="text-sm text-slate-600 mb-4">Side-by-side comparison of Operating Profit and Net Profit across FY25 and FY26.</p>
+                <p class="text-sm text-slate-600 mb-4">Side-by-side comparison of Operating Profit and Net Profit.</p>
                 <div class="relative h-80">
                     <canvas id="profitabilityChart"></canvas>
                 </div>
@@ -75,13 +84,16 @@
         <!-- Analysis & Recommendations Grid -->
         <section class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 lg:col-span-2">
-                <h3 class="text-lg font-bold text-slate-900 mb-4">Plain-Language Financial Analysis</h3>
-                <div id="analysisContent" class="space-y-4 text-sm text-slate-700 leading-relaxed">
+                <h3 class="text-lg font-bold text-slate-900 mb-4">Simple Financial &amp; Sales Analysis</h3>
+                <div class="space-y-4 text-sm text-slate-700 leading-relaxed">
                     <p>
-                        <strong class="text-slate-900">Revenue and Cost Categories (Chart 1):</strong> Between FY25 and FY26, Total Revenue dipped slightly from €26.30B to €25.86B (-1.68%), while Raw Material Costs also edged down from €21.33B to €20.66B (-3.15%). However, Other Operating Expenses (OpEx) rose from €3.25B to €3.75B (+15.22%), eating into the savings from lower material costs.
+                        <strong class="text-slate-900">What Happened to Sales &amp; Costs (FY25 vs. FY26):</strong> Sales (Total Revenue) went down slightly from <strong>€26.30B</strong> to <strong>€25.86B</strong> (-1.68%), and Raw Material Costs also <strong>decreased</strong> from <strong>€21.33B</strong> to <strong>€20.66B</strong> (-3.15%).
                     </p>
                     <p>
-                        <strong class="text-slate-900">Profit &amp; Margin Takeaway (Chart 2):</strong> Operating Profit (EBIT) fell from €1.73B to €1.46B (-15.42%), pulling the operating margin down from 6.56% to 5.64%. Net Profit declined less sharply—from €1.50B to €1.40B (-6.48%)—because financial items and currency gains helped soften the drop.
+                        <strong class="text-slate-900">Why Profit Dropped Less at the Bottom Line:</strong> Operating Profit (EBIT) dropped from <strong>€1.73B</strong> to <strong>€1.46B</strong> (-15.42%), lowering the operating margin from <strong>6.56%</strong> to <strong>5.64%</strong>. Net Profit fell less—from <strong>€1.50B</strong> to <strong>€1.40B</strong> (-6.48%)—because financial income and currency gains helped soften the drop.
+                    </p>
+                    <p>
+                        <strong class="text-slate-900">Sales Analysis — What This Means:</strong> Sales dipped by <strong>€0.44B</strong> (-1.68%), which is a relatively small top-line pullback, but it still reduced the overall revenue base. Even though raw material costs decreased, the smaller sales base and other operating pressures meant core operating profit still fell more sharply. In short, demand/sales softened slightly in FY26, so growing sales and protecting core margins matter more than relying on material cost drops alone.
                     </p>
                 </div>
             </div>
@@ -92,15 +104,15 @@
                     <ul class="space-y-3 text-sm text-slate-300">
                         <li class="flex items-start">
                             <span class="text-blue-400 font-bold mr-2">1.</span>
-                            <span><strong>Cap Non-Core OpEx:</strong> Set strict ceilings on operational expense growth.</span>
+                            <span><strong>Boost Sales Volume:</strong> Support franchise sales and urban touchpoints to reverse the -1.68% dip.</span>
                         </li>
                         <li class="flex items-start">
                             <span class="text-blue-400 font-bold mr-2">2.</span>
-                            <span><strong>Vertical Integration:</strong> Use Baltic forestland acquisitions to control input costs.</span>
+                            <span><strong>Vertical Integration:</strong> Use Baltic forestland acquisitions to keep input costs low.</span>
                         </li>
                         <li class="flex items-start">
                             <span class="text-blue-400 font-bold mr-2">3.</span>
-                            <span><strong>Franchise Expansion:</strong> Accelerate urban plan-and-order points to drive fee revenue.</span>
+                            <span><strong>Protect Operating Margin:</strong> Keep core business costs disciplined so sales translate into EBIT.</span>
                         </li>
                     </ul>
                 </div>
@@ -152,28 +164,27 @@
         const getMetric = (categoryName) =>
             financialData ? financialData.metrics.find(m => m.category === categoryName) : null;
 
-        const revenueMetric = getMetric("Total Operating Income (Revenue)") || { fy25: 26.30, fy26: 25.86 };
+        const salesMetric = getMetric("Total Operating Income (Sales / Revenue)") || { fy25: 26.30, fy26: 25.86 };
         const materialMetric = getMetric("Cost of Raw Materials & Consumables") || { fy25: 21.33, fy26: 20.66 };
-        const opexMetric = getMetric("Other Operating Expenses & Labor") || { fy25: 3.25, fy26: 3.75 };
         const ebitMetric = getMetric("Operating Profit (EBIT)") || { fy25: 1.73, fy26: 1.46 };
         const netMetric = getMetric("Net Profit") || { fy25: 1.50, fy26: 1.40 };
 
-        // Chart 1: Grouped Bar Chart by Category (Total Revenue, Raw Material Costs, OpEx)
-        const ctxCost = document.getElementById('costStructureChart').getContext('2d');
-        new Chart(ctxCost, {
+        // Chart 1: Sales & Raw Material Costs Grouped by Category (OpEx removed)
+        const ctxRevMat = document.getElementById('revenueMaterialsChart').getContext('2d');
+        new Chart(ctxRevMat, {
             type: 'bar',
             data: {
-                labels: ['Total Revenue', 'Raw Material Costs', 'OpEx'],
+                labels: ['Sales', 'Raw Material Costs'],
                 datasets: [
                     {
                         label: 'FY25',
-                        data: [revenueMetric.fy25, materialMetric.fy25, opexMetric.fy25],
+                        data: [salesMetric.fy25, materialMetric.fy25],
                         backgroundColor: '#1E3A8A',
                         borderRadius: 4
                     },
                     {
                         label: 'FY26',
-                        data: [revenueMetric.fy26, materialMetric.fy26, opexMetric.fy26],
+                        data: [salesMetric.fy26, materialMetric.fy26],
                         backgroundColor: '#0D9488',
                         borderRadius: 4
                     }
@@ -208,7 +219,57 @@
             plugins: [barValueLabels]
         });
 
-        // Chart 2: Grouped Bar Chart for Profitability (EBIT & Net Profit)
+        // Chart 2: Dedicated Sales Graph (FY25 vs FY26)
+        const ctxSales = document.getElementById('salesChart').getContext('2d');
+        new Chart(ctxSales, {
+            type: 'bar',
+            data: {
+                labels: ['Sales (Total Revenue)'],
+                datasets: [
+                    {
+                        label: 'FY25',
+                        data: [salesMetric.fy25],
+                        backgroundColor: '#1E3A8A',
+                        borderRadius: 4
+                    },
+                    {
+                        label: 'FY26',
+                        data: [salesMetric.fy26],
+                        backgroundColor: '#0D9488',
+                        borderRadius: 4
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                layout: {
+                    padding: { top: 20 }
+                },
+                plugins: {
+                    legend: { position: 'bottom' },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.dataset.label + ': €' + Number(context.raw).toFixed(2) + 'B';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        suggestedMax: 30,
+                        grid: { color: '#F1F5F9' },
+                        ticks: { callback: function(value) { return '€' + value + 'B'; } }
+                    },
+                    x: { grid: { display: false } }
+                }
+            },
+            plugins: [barValueLabels]
+        });
+
+        // Chart 3: Profitability Metrics (EBIT & Net Profit)
         const ctxProfit = document.getElementById('profitabilityChart').getContext('2d');
         new Chart(ctxProfit, {
             type: 'bar',
@@ -216,13 +277,13 @@
                 labels: ['Operating Profit (EBIT)', 'Net Profit'],
                 datasets: [
                     {
-                        label: 'FY25 (€B)',
+                        label: 'FY25',
                         data: [ebitMetric.fy25, netMetric.fy25],
                         backgroundColor: '#1E3A8A',
                         borderRadius: 4
                     },
                     {
-                        label: 'FY26 (€B)',
+                        label: 'FY26',
                         data: [ebitMetric.fy26, netMetric.fy26],
                         backgroundColor: '#0D9488',
                         borderRadius: 4
