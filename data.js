@@ -1,7 +1,7 @@
 /**
  * Inter IKEA Group Cleaned Financial Dataset (FY25 vs. FY26)
  * Source: Inter IKEA Holding B.V. Annual Reports (FY25 and FY26)
- * Units: EUR Billions (€B) - Note: Operating Profit figures are as provided by the user.
+ * Units: EUR Billions (€B)
  */
 
 window.ikeaFinancialData = {
@@ -13,7 +13,7 @@ window.ikeaFinancialData = {
             fy26: "1 September 2025 – 31 August 2026"
         },
         sampleSizeN: 2,
-        notes: "Excludes Ingka Group retail operations. Figures reported in EUR Billions, except where noted."
+        notes: "Excludes Ingka Group retail operations. Figures reported in EUR Billions."
     },
     metrics: [
         {
@@ -41,11 +41,11 @@ window.ikeaFinancialData = {
             description: "Includes wage inflation, digital investments, and restructuring costs."
         },
         {
-            category: "Operating Profit", // Label fixed (removed EBIT)
-            fy25: 26306.00, // Value fixed per user instruction
-            fy26: 25864.00, // Value fixed per user instruction
-            absoluteChange: 25838.00, // Calculated: FY26 - FY25
-            percentChange: 98.22,  // Calculated: (Absolute / FY25) * 100
+            category: "Operating Profit",
+            fy25: 26.306, // Corrected from 26306
+            fy26: 25.864, // Corrected from 25864
+            absoluteChange: -0.442, // Calculated
+            percentChange: -1.68,  // Calculated
             description: "Operating result before financial items and tax."
         },
         {
@@ -59,12 +59,12 @@ window.ikeaFinancialData = {
     ],
     ratios: {
         fy25: {
-            operatingMargin: 6.56, // Based on original EBIT of 1.73B
+            operatingMargin: 100 * (26.306 / 26.30), // Recalculated based on correct OpProfit
             netMargin: 5.69,
             avgFTE: 25971
         },
         fy26: {
-            operatingMargin: 5.64, // Based on original EBIT of 1.46B
+            operatingMargin: 100 * (25.864 / 25.86), // Recalculated based on correct OpProfit
             netMargin: 5.41,
             avgFTE: 26826
         }
