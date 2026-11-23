@@ -1,0 +1,37 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+# 1. Define categories and placeholder values (in EUR Billions)
+categories = ['Total Revenue', 'OPEX', 'Raw Material Costs']
+fy2025 = [45.1, 12.4, 18.2]  # Replace with actual FY2025 figures
+fy2026 = [46.8, 12.9, 17.6]  # Replace with actual FY2026 figures
+
+# 2. Set up bar positions grouped by category
+x = np.arange(len(categories))
+width = 0.35
+
+fig, ax = plt.subplots(figsize=(9, 5.5), dpi=300)
+
+# IKEA brand colors: Blue (#0058A3) and Yellow (#FFDB00)
+rects1 = ax.bar(x - width/2, fy2025, width, label='FY2025', color='#0058A3', edgecolor='black', linewidth=0.6)
+rects2 = ax.bar(x + width/2, fy2026, width, label='FY2026', color='#FFDB00', edgecolor='black', linewidth=0.6)
+
+# 3. Formatting and labels
+ax.set_ylabel('Amount (EUR Billions)', fontsize=11, fontweight='bold')
+ax.set_title('IKEA Financial Comparison by Category (FY2025 vs. FY2026)', fontsize=13, fontweight='bold', pad=15)
+ax.set_xticks(x)
+ax.set_xticklabels(categories, fontsize=11, fontweight='bold')
+ax.legend(frameon=True, fontsize=10)
+ax.grid(axis='y', linestyle='--', alpha=0.5)
+ax.set_axisbelow(True)
+
+# 4. Add direct value labels above bars
+ax.bar_label(rects1, padding=3, fmt='€%.1fB', fontsize=9.5)
+ax.bar_label(rects2, padding=3, fmt='€%.1fB', fontsize=9.5)
+
+# Expand y-axis slightly to fit labels cleanly
+ax.set_ylim(0, max(max(fy2025), max(fy2026)) * 1.15)
+
+plt.tight_layout()
+plt.savefig('ikea_financials.png', dpi=300)
+plt.show()
