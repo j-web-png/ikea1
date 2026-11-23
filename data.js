@@ -33,6 +33,14 @@ window.ikeaFinancialData = {
             description: "Direct procurement, manufacturing input, and supply-chain logistics costs."
         },
         {
+            category: "Operating Expenses & Labor (OpEx)",
+            fy25: 3.25,
+            fy26: 3.75,
+            absoluteChange: 0.50,
+            percentChange: 15.22,
+            description: "Includes wage inflation, digital investments, and restructuring costs."
+        },
+        {
             category: "Operating Profit (EBIT)",
             fy25: 1.73,
             fy26: 1.46,
