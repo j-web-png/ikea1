@@ -33,7 +33,7 @@ window.ikeaFinancialData = {
             description: "Direct procurement, manufacturing input, and supply-chain logistics costs."
         },
         {
-            category: "Operating Expenses & Labor (OpEx)",
+            category: "Other Operating Expenses & Labor (OpEx)",
             fy25: 3.25,
             fy26: 3.75,
             absoluteChange: 0.50,
@@ -41,11 +41,11 @@ window.ikeaFinancialData = {
             description: "Includes wage inflation, digital investments, and restructuring costs."
         },
         {
-            category: "Operating Profit",
-            fy25: 26.306,
-            fy26: 25.864,
-            absoluteChange: -0.442,
-            percentChange: -1.68,
+            category: "Operating Profit (EBIT)",
+            fy25: 1.73,
+            fy26: 1.46,
+            absoluteChange: -0.27,
+            percentChange: -15.42,
             description: "Operating result before financial items and tax."
         },
         {
@@ -59,14 +59,14 @@ window.ikeaFinancialData = {
     ],
     ratios: {
         fy25: {
-            operatingMargin: 100.02,
-            netMargin: 5.69
-            // Average FTE removed
+            operatingMargin: 6.56,
+            netMargin: 5.69,
+            avgFTE: 25971
         },
         fy26: {
-            operatingMargin: 100.02,
-            netMargin: 5.41
-            // Average FTE removed
+            operatingMargin: 5.64,
+            netMargin: 5.41,
+            avgFTE: 26826
         }
     }
 };
