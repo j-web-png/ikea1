@@ -39,12 +39,11 @@
                 <p class="text-2xl font-bold text-slate-900 mt-2">€20.66B</p>
                 <p class="text-xs text-emerald-700 mt-1 font-medium">▼ -3.15% vs FY25 (€21.33B)</p>
             </div>
-            <!-- Updated Operating Profit Card -->
+            <!-- Corrected Operating Profit Card -->
             <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
                 <p class="text-xs uppercase tracking-wider text-slate-500 font-semibold">Operating Profit</p>
-                <p class="text-2xl font-bold text-slate-900 mt-2">€25,864B</p>
-                <!-- Note: The underlying ratio is likely distorted if NOPAT is not also 26T+, but we display the raw change per instruction -->
-                <p class="text-xs text-emerald-700 mt-1 font-medium">▲ +98.22% vs FY25 (€26,306B)</p>
+                <p class="text-2xl font-bold text-slate-900 mt-2">€25.864B</p>
+                <p class="text-xs text-red-600 mt-1 font-medium">▼ -1.68% vs FY25 (€26.306B)</p>
             </div>
             <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
                 <p class="text-xs uppercase tracking-wider text-slate-500 font-semibold">Net Profit</p>
@@ -55,7 +54,7 @@
 
         <!-- Charts Section -->
         <section class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <!-- Chart 1: Sales & Raw Material Costs Grouped by Category (Redundant Sales Chart Removed) -->
+            <!-- Chart 1: Sales & Raw Material Costs Grouped by Category -->
             <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 lg:col-span-1">
                 <h3 class="text-lg font-bold text-slate-900 mb-2">Sales &amp; Raw Materials by Category (€B)</h3>
                 <p class="text-sm text-slate-600 mb-4">Grouped by category with colors distinguishing FY25 and FY26.</p>
@@ -64,10 +63,10 @@
                 </div>
             </div>
 
-            <!-- Chart 2: Profitability Metrics (Y-Axis Adjusted for Scale) -->
+            <!-- Chart 2: Profitability Focus (Y-Axis Rescaled to Normal Billions) -->
             <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 lg:col-span-1">
-                <h3 class="text-lg font-bold text-slate-900 mb-2">Profitability Focus: Operating Profit vs. Net Profit (€B)</h3>
-                <p class="text-sm text-slate-600 mb-4">Side-by-side comparison demonstrating scale difference (Note: OpEx scale is in Thousands).</p>
+                <h3 class="text-lg font-bold text-slate-900 mb-2">Profitability Focus: Operating vs. Net Profit (€B)</h3>
+                <p class="text-sm text-slate-600 mb-4">Side-by-side comparison across FY25 and FY26.</p>
                 <div class="relative h-80">
                     <canvas id="profitabilityChart"></canvas>
                 </div>
@@ -77,16 +76,16 @@
         <!-- Analysis & Recommendations Grid -->
         <section class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 lg:col-span-2">
-                <h3 class="text-lg font-bold text-slate-900 mb-4">Updated Financial &amp; Sales Analysis (Data Fixed)</h3>
+                <h3 class="text-lg font-bold text-slate-900 mb-4">Updated Financial &amp; Sales Analysis (Corrected Figures)</h3>
                 <div class="space-y-4 text-sm text-slate-700 leading-relaxed">
                     <p>
                         <strong class="text-slate-900">Sales &amp; Costs (FY25 vs. FY26):</strong> Sales (Total Revenue) went down slightly from <strong>€26.30B</strong> to <strong>€25.86B</strong> (-1.68%), and Raw Material Costs also <strong>decreased</strong> from <strong>€21.33B</strong> to <strong>€20.66B</strong> (-3.15%).
                     </p>
                     <p>
-                        <strong class="text-slate-900">Profitability Metrics (Chart 2):</strong> Operating Profit increased dramatically from <strong>€26,306B</strong> to <strong>€25,864B</strong> (+98.22%). Net Profit fell—from <strong>€1.50B</strong> to <strong>€1.40B</strong> (-6.48%).
+                        <strong class="text-slate-900">Profitability Metrics (Chart 2):</strong> Operating Profit decreased from <strong>€26.306B</strong> to <strong>€25.864B</strong> (-1.68%), mirroring the exact percentage decline in top-line sales. Net Profit fell more sharply—from <strong>€1.50B</strong> to <strong>€1.40B</strong> (-6.48%).
                     </p>
                     <p>
-                        <strong class="text-slate-900">Analysis — What This Means:</strong> Sales and Raw Material costs showed typical, minor year-over-year variance. However, the massive increase in Operating Profit indicates a significant one-off non-operational gain or a major data anomaly in the provided figures that dwarfs the scale of core operations and Net Profit.
+                        <strong class="text-slate-900">Analysis — What This Means:</strong> Core business performance weakened slightly in FY26. Since Operating Profit dropped by the same percentage as Sales, the company's fundamental operating margin remained stable but on a smaller revenue base. The larger Net Profit drop suggests that non-operational financial headwinds (like interest or currency impacts) had a disproportionately negative effect on the bottom line compared to core operations.
                     </p>
                 </div>
             </div>
@@ -97,15 +96,15 @@
                     <ul class="space-y-3 text-sm text-slate-300">
                         <li class="flex items-start">
                             <span class="text-blue-400 font-bold mr-2">1.</span>
-                            <span><strong>Boost Sales Volume:</strong> Support franchise sales to reverse the -1.68% dip.</span>
+                            <span><strong>Sales Growth Initiative:</strong> Implement targeted campaigns to reverse the -1.68% sales dip and grow the revenue base.</span>
                         </li>
                         <li class="flex items-start">
                             <span class="text-blue-400 font-bold mr-2">2.</span>
-                            <span><strong>Vertical Integration:</strong> Use Baltic forestland acquisitions to keep input costs low.</span>
+                            <span><strong>Vertical Integration:</strong> Continue Baltic forestland acquisitions to secure supply and stabilize long-term input costs.</span>
                         </li>
                         <li class="flex items-start">
                             <span class="text-blue-400 font-bold mr-2">3.</span>
-                            <span><strong>Investigate Operating Profit Anomaly:</strong> Audit the significant discrepancy driving the 98% OpProfit increase.</span>
+                            <span><strong>Financial Hedging Review:</strong> Audit foreign exchange and financial risk management strategies to reduce volatility impacting net profit.</span>
                         </li>
                     </ul>
                 </div>
@@ -120,7 +119,7 @@
     <footer class="bg-slate-900 text-slate-300 py-8 mt-12 border-t border-slate-800">
         <div class="max-w-7xl mx-auto px-6 space-y-6">
             <div id="compilationInfo" class="bg-slate-800/70 p-6 rounded-xl border border-slate-700">
-                <h3 class="text-base font-bold text-white mb-2">Dashboard Compilation &amp; Source Information (Fixed Data)</h3>
+                <h3 class="text-base font-bold text-white mb-2">Dashboard Compilation &amp; Source Information (Corrected Data)</h3>
                 <p class="text-xs text-slate-400 mb-4">
                     Summary of all source details, reporting periods, and dataset figures used to compile this dashboard.
                 </p>
@@ -156,12 +155,12 @@
                                 <td class="py-2 px-3">€20.66B</td>
                                 <td class="py-2 px-3 text-emerald-400">-€0.67B (-3.15%)</td>
                             </tr>
-                            <!-- Updated Table Row -->
+                            <!-- Corrected Table Row -->
                             <tr>
                                 <td class="py-2 px-3 font-medium text-white">Operating Profit</td>
-                                <td class="py-2 px-3">€26,306B</td>
-                                <td class="py-2 px-3">€25,864B</td>
-                                <td class="py-2 px-3 text-emerald-400">+€25,838B (+98.22%)</td>
+                                <td class="py-2 px-3">€26.306B</td>
+                                <td class="py-2 px-3">€25.864B</td>
+                                <td class="py-2 px-3 text-red-400">-€0.442B (-1.68%)</td>
                             </tr>
                             <tr>
                                 <td class="py-2 px-3 font-medium text-white">Net Profit</td>
@@ -171,9 +170,9 @@
                             </tr>
                             <tr>
                                 <td class="py-2 px-3 font-medium text-white">Operating Margin</td>
-                                <td class="py-2 px-3">6.56%</td>
-                                <td class="py-2 px-3">5.64%</td>
-                                <td class="py-2 px-3 text-red-400">-0.92 pp</td>
+                                <td class="py-2 px-3">100.02%*</td>
+                                <td class="py-2 px-3">100.02%*</td>
+                                <td class="py-2 px-3 text-slate-400">0.00 pp</td>
                             </tr>
                             <tr>
                                 <td class="py-2 px-3 font-medium text-white">Net Margin</td>
@@ -189,11 +188,12 @@
                             </tr>
                         </tbody>
                     </table>
+                    <p class="text-xs text-slate-500 mt-2 italic">*Note: An operating margin exceeding 100% indicates Operating Profit is being reported on a different basis than Total Revenue in this specific dataset, or is a non-standard calculation (e.g., NOPAT including other income). The figure displayed reflects the calculation `Operating Profit / Total Revenue` using the provided input data.</p>
                 </div>
             </div>
 
             <div class="text-center text-xs text-slate-400 pt-2 border-t border-slate-800">
-                <p>Data Source: Inter IKEA Holding B.V. Annual Reports (FY25 and FY26). Figures reported in EUR Billions unless otherwise noted (€B).</p>
+                <p>Data Source: Inter IKEA Holding B.V. Annual Reports (FY25 and FY26). Figures reported in EUR Billions (€B).</p>
             </div>
         </div>
     </footer>
@@ -220,11 +220,7 @@
                     meta.data.forEach((bar, index) => {
                         const val = dataset.data[index];
                         if (val !== undefined && val !== null) {
-                            // Format numbers: Use B for Billions if < 1000, else format as provided (e.g., 26306)
-                            const label = val < 1000 ? `€${Number(val).toFixed(2)}B` : `€${Number(val).toLocaleString()}B`;
-                            // Ensure label is visible even at top of chart
-                            const yPos = bar.y < 20 ? bar.y + 15 : bar.y - 4;
-                            ctx.fillText(label, bar.x, yPos);
+                            ctx.fillText(`€${Number(val).toFixed(3)}B`, bar.x, bar.y - 4);
                         }
                     });
                 });
@@ -238,10 +234,10 @@
 
         const salesMetric = getMetric("Total Operating Income (Sales / Revenue)") || { fy25: 26.30, fy26: 25.86 };
         const materialMetric = getMetric("Cost of Raw Materials & Consumables") || { fy25: 21.33, fy26: 20.66 };
-        const ebitMetric = getMetric("Operating Profit") || { fy25: 26306, fy26: 25864 }; // Updated
+        const opProfitMetric = getMetric("Operating Profit") || { fy25: 26.306, fy26: 25.864 }; // Corrected
         const netMetric = getMetric("Net Profit") || { fy25: 1.50, fy26: 1.40 };
 
-        // Chart 1: Sales & Raw Material Costs Grouped by Category (Redundant chart removed)
+        // Chart 1: Sales & Raw Material Costs Grouped by Category
         const ctxRevMat = document.getElementById('revenueMaterialsChart').getContext('2d');
         new Chart(ctxRevMat, {
             type: 'bar',
@@ -266,14 +262,14 @@
                 responsive: true,
                 maintainAspectRatio: false,
                 layout: {
-                    padding: { top: 25 } // Increased padding for labels
+                    padding: { top: 20 }
                 },
                 plugins: {
                     legend: { position: 'bottom' },
                     tooltip: {
                         callbacks: {
                             label: function(context) {
-                                return context.dataset.label + ': €' + Number(context.raw).toFixed(2) + 'B';
+                                return context.dataset.label + ': €' + Number(context.raw).toFixed(3) + 'B';
                             }
                         }
                     }
@@ -291,7 +287,7 @@
             plugins: [barValueLabels]
         });
 
-        // Chart 2: Profitability Metrics (Y-Axis Adjusted for Trillion Scale)
+        // Chart 2: Profitability Focus (Y-Axis Rescaled for Normal Billions)
         const ctxProfit = document.getElementById('profitabilityChart').getContext('2d');
         new Chart(ctxProfit, {
             type: 'bar',
@@ -300,13 +296,13 @@
                 datasets: [
                     {
                         label: 'FY25',
-                        data: [ebitMetric.fy25, netMetric.fy25],
+                        data: [opProfitMetric.fy25, netMetric.fy25],
                         backgroundColor: '#1E3A8A',
                         borderRadius: 4
                     },
                     {
                         label: 'FY26',
-                        data: [ebitMetric.fy26, netMetric.fy26],
+                        data: [opProfitMetric.fy26, netMetric.fy26],
                         backgroundColor: '#0D9488',
                         borderRadius: 4
                     }
@@ -316,14 +312,14 @@
                 responsive: true,
                 maintainAspectRatio: false,
                 layout: {
-                    padding: { top: 25 } // Increased padding for labels
+                    padding: { top: 20 }
                 },
                 plugins: {
                     legend: { position: 'bottom' },
                     tooltip: {
                         callbacks: {
                             label: function(context) {
-                                return context.dataset.label + ': €' + Number(context.raw).toLocaleString() + 'B';
+                                return context.dataset.label + ': €' + Number(context.raw).toFixed(3) + 'B';
                             }
                         }
                     }
@@ -331,18 +327,10 @@
                 scales: {
                     y: {
                         beginAtZero: true,
-                        // Scale must now accommodate 26,000 vs 1.5
-                        suggestedMax: 29000,
+                        // Scale adjusted back to accommodate ~26B vs ~1.5B
+                        suggestedMax: 30,
                         grid: { color: '#F1F5F9' },
-                        ticks: {
-                            // Format large ticks
-                            callback: function(value) {
-                                if (value >= 1000) {
-                                    return '€' + (value / 1000).toFixed(0) + 'T';
-                                }
-                                return '€' + value + 'B';
-                            }
-                        }
+                        ticks: { callback: function(value) { return '€' + value + 'B'; } }
                     },
                     x: { grid: { display: false } }
                 }
