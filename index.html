@@ -406,7 +406,7 @@
 // LOAD FINANCIAL DATA
 // ==========================================
 
-const financial = window.ikeaFinancialData;
+ financial = window.ikeaFinancialData;
 
 if (!financial) {
     throw new Error(
@@ -414,11 +414,11 @@ if (!financial) {
     );
 }
 
-const getMetric = name => financial.metrics.find(
+ getMetric = name => financial.metrics.find(
     item => item.category === name
 );
 
-const salesGoods = getMetric("Operating Income from Sales of Goods");
+const salesGoods = getMetric("Total Operating Income");
 const rawMaterials = getMetric("Cost of Raw Materials & Consumables");
 const otherOpex = getMetric("Other Operating Expenses & Labour");
 const netProfit = getMetric("Net Profit");
