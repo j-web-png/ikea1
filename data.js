@@ -1,6 +1,8 @@
 
 /**
- * Inter IKEA Group Financial Dataset (FY24–FY26)
+ * Inter IKEA Group Financial Dataset
+ * FY2024 vs FY2025 vs FY2026
+ *
  * Financial units: EUR Billions (€B)
  * Geographical income: EUR Millions (€M)
  */
@@ -8,6 +10,7 @@
 window.ikeaFinancialData = {
 
     metadata: {
+
         entity: "Inter IKEA Group (Inter IKEA Holding B.V.)",
 
         timePeriod: {
@@ -19,7 +22,9 @@ window.ikeaFinancialData = {
         sampleSizeN: 3,
 
         notes: "Excludes Ingka Group retail operations. Financial figures reported in EUR Billions unless otherwise indicated."
+
     },
+
 
     // FINANCIAL METRICS
 
@@ -32,17 +37,7 @@ window.ikeaFinancialData = {
             fy26: 25.864,
             absoluteChange: -0.442,
             percentChange: -1.68,
-            description: "Operating income from sales of goods."
-        },
-
-        {
-            category: "Operating Income from Sales of Goods",
-            fy24: 26.5,
-            fy25: 26.306,
-            fy26: 25.864,
-            absoluteChange: -0.442,
-            percentChange: -1.68,
-            description: "Operating income from sales of goods."
+            description: "Total operating income."
         },
 
         {
@@ -60,7 +55,7 @@ window.ikeaFinancialData = {
             fy26: 3.75,
             absoluteChange: 0.50,
             percentChange: 15.22,
-            description: "Other operating expenses and labour."
+            description: "Includes wage inflation, digital system investments, and organizational restructuring costs."
         },
 
         {
@@ -70,23 +65,11 @@ window.ikeaFinancialData = {
             fy26: 1.40,
             absoluteChange: -0.10,
             percentChange: -6.48,
-            description: "Net profit."
+            description: "Net profit after financial items and tax."
         }
 
     ],
 
-    // WORLDWIDE IKEA RETAIL SALES
-    // Units: EUR Billions (€B)
-
-    worldwideRetailSales: {
-
-        unit: "EUR Billions",
-
-        fy24: 45.1,
-        fy25: 44.6,
-        fy26: 43.8
-
-    },
 
     // GEOGRAPHICAL DISTRIBUTION OF OPERATING INCOME
     // Units: EUR Millions (€M)
@@ -102,33 +85,68 @@ window.ikeaFinancialData = {
         ],
 
         fy25: {
-            label: "FY25",
-            values: [1177, 14452, 10677],
+
+            label: "FY2025",
+
+            values: [
+                1177,
+                14452,
+                10677
+            ],
+
             total: 26306
+
         },
 
         fy26: {
-            label: "FY26",
-            values: [1292, 14240, 10332],
+
+            label: "FY2026",
+
+            values: [
+                1292,
+                14240,
+                10332
+            ],
+
             total: 25864
+
         }
 
     },
+
+
+    // WORLDWIDE IKEA RETAIL SALES
+    // Units: EUR Billions (€B)
+
+    worldwideRetailSales: {
+
+        unit: "EUR Billions",
+
+        fy24: 45.1,
+        fy25: 44.6,
+        fy26: 43.8
+
+    },
+
 
     // FINANCIAL RATIOS
 
     ratios: {
 
         fy25: {
+
             operatingMargin: 6.56,
             netMargin: 5.69,
             avgFTE: 25971
+
         },
 
         fy26: {
+
             operatingMargin: 5.64,
             netMargin: 5.41,
             avgFTE: 26826
+
         }
 
     }
