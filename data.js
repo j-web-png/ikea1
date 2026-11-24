@@ -17,44 +17,36 @@ window.ikeaFinancialData = {
     },
     metrics: [
         {
-            category: "Operating Income (Sales of Goods)",
+            category: "Total Revenue (Wholesale)",
             fy25: 26.30,
             fy26: 25.86,
             absoluteChange: -0.44,
             percentChange: -1.68,
-            description: "Wholesale goods sold to franchisees."
+            description: "Wholesale goods sold to franchisees plus earned franchise fees."
         },
         {
-            category: "Operating Income from Franchising",
-            fy25: 10.10,
-            fy26: 10.10,
-            absoluteChange: 0.00,
-            percentChange: 0.00,
-            description: "Fees earned from franchisees."
-        },
-        {
-            category: "Total Operating Income",
-            fy25: 26.306, // Corrected value
-            fy26: 25.864, // Corrected value
-            absoluteChange: -0.442,
-            percentChange: -1.68,
-            description: "Total income before financial items and tax."
-        },
-        {
-            category: "Raw Materials and Consumables", // Label updated
+            category: "Raw Material Costs",
             fy25: 21.33,
             fy26: 20.66,
             absoluteChange: -0.67,
             percentChange: -3.15,
-            description: "Direct procurement and supply-chain costs."
+            description: "Direct procurement, manufacturing input, and supply-chain logistics costs."
         },
         {
-            category: "Other Operating Expenses & Labor (OpEx)",
+            category: "Other OpEx & Labor",
             fy25: 3.25,
             fy26: 3.75,
             absoluteChange: 0.50,
             percentChange: 15.22,
-            description: "Wage inflation and digital investments."
+            description: "Includes wage inflation, digital investments, and restructuring costs."
+        },
+        {
+            category: "Operating Profit (EBIT)",
+            fy25: 1.73,
+            fy26: 1.46,
+            absoluteChange: -0.27,
+            percentChange: -15.42,
+            description: "Operating result before financial items and tax."
         },
         {
             category: "Net Profit",
@@ -62,7 +54,7 @@ window.ikeaFinancialData = {
             fy26: 1.40,
             absoluteChange: -0.10,
             percentChange: -6.48,
-            description: "Bottom-line profit."
+            description: "Bottom-line profit cushioned by net financial income and currency derivative gains."
         },
         // New External Metric (for Chart 4)
         {
