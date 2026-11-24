@@ -8,8 +8,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Chart.js CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Chart.js Plugin for Data Labels -->
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
     <!-- Financial Data -->
     <script src="data.js"></script>
 </head>
@@ -46,11 +44,10 @@
                 <p class="text-xl font-bold text-slate-900 mt-1">€3.75B</p>
                 <p class="text-xs text-red-600 mt-1 font-medium">▲ +15.22% vs FY25</p>
             </div>
-            <!-- Operating Profit Card updated with correct values -->
             <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
                 <p class="text-xs uppercase tracking-wider text-slate-500 font-semibold">Operating Profit (EBIT)</p>
-                <p class="text-xl font-bold text-slate-900 mt-1">€25.864B</p>
-                <p class="text-xs text-red-600 mt-1 font-medium">▼ -1.68% vs FY25 (€26.306B)</p>
+                <p class="text-xl font-bold text-slate-900 mt-1">€1.46B</p>
+                <p class="text-xs text-red-600 mt-1 font-medium">▼ -15.42% vs FY25</p>
             </div>
             <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
                 <p class="text-xs uppercase tracking-wider text-slate-500 font-semibold">Net Profit</p>
@@ -59,29 +56,29 @@
             </div>
         </section>
 
-        <!-- Charts Section -->
+        <!-- Charts Grid 1 -->
         <section class="grid grid-cols-1 xl:grid-cols-3 gap-8">
-            <!-- Left Column: Vertical Bar Charts (2) -->
+            <!-- Left Column: Vertical Bar Charts -->
             <div class="xl:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- Chart 1: Revenue vs Material Costs -->
                 <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 h-[400px]">
                     <h3 class="text-base font-bold text-slate-900">Revenue vs. Material Costs (€B)</h3>
                     <canvas id="revenueCostsChart"></canvas>
                 </div>
-                <!-- Chart 2: Operating Profit (EBIT) Trend - Scale Adjusted for 26B -->
+                <!-- Chart 2: Operating Profit (EBIT) -->
                 <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 h-[400px]">
                     <h3 class="text-base font-bold text-slate-900">Operating Profit (EBIT) Trend (€B)</h3>
                     <canvas id="ebitChart"></canvas>
                 </div>
             </div>
 
-            <!-- Right Column: Analysis & Recommendations -->
+            <!-- Right Column: Analysis -->
             <aside class="bg-slate-900 text-slate-200 p-6 rounded-xl shadow-lg flex flex-col justify-between">
                 <div>
                     <h3 class="text-lg font-bold text-white mb-4">Core Business Analysis</h3>
                     <div class="space-y-3 text-sm leading-relaxed text-slate-300">
                         <p><strong class="text-white">The Situation:</strong> Total Revenue dipped slightly by 1.68% (€0.44B). Simultaneously, Other Operating Expenses (OpEx) jumped by 15.22% (€0.50B), largely absorbing savings from lower material costs.</p>
-                        <p><strong class="text-white">The Impact:</strong> Operating Profit (EBIT) fell by 1.68%, dropping from €26.306B to €25.864B. The operating margin remained stable at approx 100%. <em>*(Note: Based on provided figures).*</em></p>
+                        <p><strong class="text-white">The Impact:</strong> Operating Profit (EBIT) fell by over 15%, dropping from €1.73B to €1.46B. The operating margin compressed from 6.56% to 5.64%.</p>
                         <p><strong class="text-white">The Priority:</strong> To protect core operations, immediate focus is required on cost discipline regarding OpEx alongside strategies to restore top-line growth.</p>
                     </div>
                 </div>
@@ -92,27 +89,81 @@
             </aside>
         </section>
 
-        <!-- Bottom Section: Horizontal Net Profit Chart -->
+        <!-- Chart Row 2: Net Profit Horizontal Chart -->
         <section class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 h-[220px]">
             <h3 class="text-base font-bold text-slate-900 mb-4">Net Profit Comparison (€B)</h3>
             <canvas id="netProfitHorizontalChart"></canvas>
         </section>
+
+        <!-- New Row: Geographical Operating Income Pie/Donut Charts with absolute figures underneath -->
+        <section class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+            <h3 class="text-base font-bold text-slate-900 mb-2">Geographical Distribution of Operating Income</h3>
+            <p class="text-sm text-slate-500 mb-6">Interactive comparison demonstrating shifts between the Netherlands, the rest of the EU, and global markets.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- FY25 Chart -->
+                <div class="flex flex-col items-center">
+                    <h4 class="text-sm font-semibold text-slate-700 mb-3">FY25 (Total: €26,306 Million)</h4>
+                    <div class="relative w-full max-w-[280px] h-[280px]">
+                        <canvas id="geoChartFY25"></canvas>
+                    </div>
+                    <!-- Detailed Values List -->
+                    <div class="mt-4 grid grid-cols-3 gap-x-6 text-xs font-medium text-slate-600 bg-slate-50 border border-slate-100 rounded-lg p-3 w-full max-w-md justify-center">
+                        <div>
+                            <span class="inline-block w-2 h-2 rounded-full bg-amber-500 mr-1.5"></span>NL: <strong class="text-slate-900">€1,177M</strong>
+                        </div>
+                        <div>
+                            <span class="inline-block w-2 h-2 rounded-full bg-blue-700 mr-1.5"></span>EU: <strong class="text-slate-900">€14,452M</strong>
+                        </div>
+                        <div>
+                            <span class="inline-block w-2 h-2 rounded-full bg-teal-600 mr-1.5"></span>ROW: <strong class="text-slate-900">€10,677M</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FY26 Chart -->
+                <div class="flex flex-col items-center">
+                    <h4 class="text-sm font-semibold text-slate-700 mb-3">FY26 (Total: €25,864 Million)</h4>
+                    <div class="relative w-full max-w-[280px] h-[280px]">
+                        <canvas id="geoChartFY26"></canvas>
+                    </div>
+                    <!-- Detailed Values List -->
+                    <div class="mt-4 grid grid-cols-3 gap-x-6 text-xs font-medium text-slate-600 bg-slate-50 border border-slate-100 rounded-lg p-3 w-full max-w-md justify-center">
+                        <div>
+                            <span class="inline-block w-2 h-2 rounded-full bg-amber-500 mr-1.5"></span>NL: <strong class="text-slate-900">€1,292M</strong>
+                        </div>
+                        <div>
+                            <span class="inline-block w-2 h-2 rounded-full bg-blue-700 mr-1.5"></span>EU: <strong class="text-slate-900">€14,240M</strong>
+                        </div>
+                        <div>
+                            <span class="inline-block w-2 h-2 rounded-full bg-teal-600 mr-1.5"></span>ROW: <strong class="text-slate-900">€10,332M</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- Full Width Footer -->
-    <footer class="bg-slate-950 text-slate-500 mt-12 py-6 border-t border-slate-800 w-full">
+    <footer class="bg-slate-950 text-slate-500 py-6 border-t border-slate-800 w-full">
         <div class="max-w-7xl mx-auto px-6 text-center text-xs space-y-2">
             <p><strong>Data &amp; Consolidation Notes:</strong> Inter IKEA Group consists of Inter IKEA Holding B.V. and its subsidiaries. It is the franchisor and worldwide IKEA supplier. The data presented excludes the financial results of Ingka Group, the largest franchisee.</p>
-            <p>Source: Inter IKEA Holding B.V. Annual &amp; Sustainability Reports (FY25 and FY26). Figures are unaudited illustrative examples in EUR Billions.</p>
-            <p class="text-slate-600">Dashboard Prototype v3.3 | Internal Analysis | Data Fixed</p>
+            <p>Source: Inter IKEA Holding B.V. Annual &amp; Sustainability Reports (FY25 and FY26). Figures are unaudited illustrative examples in EUR Billions and EUR Millions (€M).</p>
+            <p class="text-slate-600">Dashboard Prototype v3.4 | Internal Analysis | Geek Group Integration</p>
         </div>
     </footer>
 
     <!-- Chart Scripts -->
     <script>
+        const financialData = window.ikeaFinancialData;
+
         const ctx1 = document.getElementById('revenueCostsChart').getContext('2d');
         const ctx2 = document.getElementById('ebitChart').getContext('2d');
         const ctx3 = document.getElementById('netProfitHorizontalChart').getContext('2d');
+        
+        // Geographical Pie Charts (Donut)
+        const ctxGeo25 = document.getElementById('geoChartFY25').getContext('2d');
+        const ctxGeo26 = document.getElementById('geoChartFY26').getContext('2d');
 
         // Shared Plugin Configuration for Data Labels (Vertical Charts)
         const datalabelsPlugin = {
@@ -126,12 +177,12 @@
                         const value = dataset.data[index];
                         if (value === null || value === undefined) return;
                         
-                        ctx.fillStyle = '#1e293b'; // text-slate-800
+                        ctx.fillStyle = '#1e293b'; 
                         ctx.font = 'bold 11px sans-serif';
                         ctx.textAlign = 'center';
                         ctx.textBaseline = 'bottom';
 
-                        const label = `€${value.toFixed(3)}B`;
+                        const label = `€${value.toFixed(2)}B`;
                         ctx.fillText(label, bar.x, bar.y - 5);
                     });
                 });
@@ -150,7 +201,7 @@
                     position: 'bottom',
                     labels: { boxWidth: 12, font: { size: 11 } }
                 },
-                tooltip: { enabled: true, callbacks: { label: (i) => `€${i.parsed.y.toFixed(3)}B` } }
+                tooltip: { enabled: true }
             },
             scales: {
                 y: {
@@ -174,14 +225,14 @@
                     {
                         label: 'Total Revenue',
                         data: [26.30, 25.86],
-                        backgroundColor: '#1e3a8a', // blue-900
+                        backgroundColor: '#1e3a8a', 
                         borderRadius: 6,
                         barPercentage: 0.7
                     },
                     {
                         label: 'Raw Material Costs',
                         data: [21.33, 20.66],
-                        backgroundColor: '#b91c1c', // red-700
+                        backgroundColor: '#b91c1c', 
                         borderRadius: 6,
                         barPercentage: 0.7
                     }
@@ -191,15 +242,15 @@
             plugins: [datalabelsPlugin]
         });
 
-        // Chart 2: EBIT Only - Scale Adjusted for 26B
+        // Chart 2: EBIT Only
         new Chart(ctx2, {
             type: 'bar',
             data: {
                 labels: ['FY25', 'FY26'],
                 datasets: [{
                     label: 'Operating Profit (EBIT)',
-                    data: [26.306, 25.864], // Updated with correct values
-                    backgroundColor: '#0d9488', // teal-600
+                    data: [1.73, 1.46],
+                    backgroundColor: '#0d9488', 
                     borderRadius: 6,
                     barPercentage: 0.4
                 }]
@@ -210,14 +261,14 @@
                     ...commonOptions.scales,
                     y: {
                         ...commonOptions.scales.y,
-                        suggestedMax: 30 // Increased max to accommodate 26B
+                        suggestedMax: 2.0
                     }
                 }
             },
             plugins: [datalabelsPlugin]
         });
 
-        // Chart 3: Net Profit Horizontal - Labels Fixed
+        // Chart 3: Net Profit Horizontal
         new Chart(ctx3, {
             type: 'bar',
             data: {
@@ -225,9 +276,9 @@
                 datasets: [{
                     label: 'Net Profit',
                     data: [1.50, 1.40],
-                    backgroundColor: '#166534', // green-800
+                    backgroundColor: '#166534', 
                     borderRadius: 6,
-                    indexAxis: 'y', // Makes it horizontal
+                    indexAxis: 'y', 
                     barPercentage: 0.5
                 }]
             },
@@ -236,12 +287,10 @@
                 responsive: true,
                 maintainAspectRatio: false,
                 layout: {
-                    padding: { left: 50, right: 50 } // Room for labels
+                    padding: { left: 50, right: 50 } 
                 },
                 plugins: {
                     legend: { display: false },
-                    tooltip: { enabled: true, callbacks: { label: (i) => `€${i.parsed.x.toFixed(3)}B` } },
-                    // Custom plugin for horizontal data labels
                     custom_datalabels_horizontal: {
                         id: 'custom_datalabels_horizontal',
                         afterDatasetsDraw(chart) {
@@ -256,7 +305,6 @@
                                     ctx.textAlign = 'left';
                                     ctx.textBaseline = 'middle';
                                     const label = `€${value.toFixed(2)}B`;
-                                    // Position to the right of the bar
                                     ctx.fillText(label, bar.x + 10, bar.y);
                                 });
                             });
@@ -266,7 +314,7 @@
                 scales: {
                     x: {
                         beginAtZero: true,
-                        max: 1.8, // Keep tight scale for Net Profit
+                        max: 1.8,
                         grid: { color: '#f1f5f9' },
                         ticks: { callback: (val) => '€' + val + 'B', font: { size: 10 } }
                     },
@@ -278,6 +326,76 @@
             },
             plugins: ['custom_datalabels_horizontal']
         });
+
+        // Pie Charts Configuration Function
+        function createGeoChart(ctx, data, total) {
+            const percentages = data.map(item => ((item.amount / total) * 100).toFixed(1));
+            return new Chart(ctx, {
+                type: 'doughnut', // Use doughnut to make it modern
+                data: {
+                    labels: data.map(item => item.region),
+                    datasets: [{
+                        data: data.map(item => item.amount),
+                        backgroundColor: ['#f59e0b', '#1d4ed8', '#0d9488'], // NL (gold), EU (dark blue), ROW (teal)
+                        borderWidth: 2,
+                        borderColor: '#ffffff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }, // Dispay in legend card beneath chart to avoid overlapping
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const rawVal = context.raw;
+                                    const pct = ((rawVal / total) * 100).toFixed(1);
+                                    return ` ${context.label}: €${rawVal.toLocaleString()}M (${pct}%)`;
+                                }
+                            }
+                        }
+                    },
+                    cutout: '40%'
+                },
+                // Draw Percentage labels on the slices manually for precision
+                plugins: [{
+                    id: 'slice_percentage_labels',
+                    afterDatasetsDraw(chart) {
+                        const { ctx } = chart;
+                        ctx.save();
+                        chart.data.datasets.forEach((dataset, datasetIndex) => {
+                            const meta = chart.getDatasetMeta(datasetIndex);
+                            meta.data.forEach((element, index) => {
+                                const val = dataset.data[index];
+                                const pct = ((val / total) * 100).toFixed(1) + '%';
+                                const { x, y } = element.tooltipPosition();
+                                
+                                ctx.fillStyle = '#ffffff';
+                                ctx.font = 'bold 11px sans-serif';
+                                ctx.shadowColor = 'rgba(0, 0, 0, 0.4)';
+                                ctx.shadowBlur = 4;
+                                ctx.textAlign = 'center';
+                                ctx.textBaseline = 'middle';
+                                ctx.fillText(pct, x, y);
+                            });
+                        });
+                        ctx.restore();
+                    }
+                }]
+            });
+        }
+
+        // Initialize FY25 Donut
+        const geo25Data = financialData.geoDistribution.fy25;
+        const total25 = geo25Data.reduce((sum, item) => sum + item.amount, 0);
+        createGeoChart(ctxGeo25, geo25Data, total25);
+
+        // Initialize FY26 Donut
+        const geo26Data = financialData.geoDistribution.fy26;
+        const total26 = geo26Data.reduce((sum, item) => sum + item.amount, 0);
+        createGeoChart(ctxGeo26, geo26Data, total26);
+
     </script>
 </body>
 </html>
