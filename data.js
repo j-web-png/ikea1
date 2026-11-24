@@ -1,7 +1,7 @@
 /**
  * Inter IKEA Group Cleaned Financial Dataset (FY25 vs. FY26)
  * Source: Inter IKEA Holding B.V. Annual Reports (FY25 and FY26)
- * Units: EUR Billions (€B) / EUR Millions (€M) where specified
+ * Units: EUR Billions (€B)
  */
 
 window.ikeaFinancialData = {
@@ -13,24 +13,40 @@ window.ikeaFinancialData = {
             fy26: "1 September 2025 – 31 August 2026"
         },
         sampleSizeN: 2,
-        notes: "Excludes Ingka Group retail operations."
+        notes: "Excludes Ingka Group retail operations. Figures reported in EUR Billions."
     },
     metrics: [
         {
-            category: "Total Operating Income (Sales / Revenue)",
+            category: "Operating Income (Sales of Goods)",
             fy25: 26.30,
             fy26: 25.86,
             absoluteChange: -0.44,
             percentChange: -1.68,
-            description: "Wholesale goods sold to franchisees plus earned franchise fees."
+            description: "Wholesale goods sold to franchisees."
         },
         {
-            category: "Cost of Raw Materials & Consumables",
+            category: "Operating Income from Franchising",
+            fy25: 10.10,
+            fy26: 10.10,
+            absoluteChange: 0.00,
+            percentChange: 0.00,
+            description: "Fees earned from franchisees."
+        },
+        {
+            category: "Total Operating Income",
+            fy25: 26.306, // Corrected value
+            fy26: 25.864, // Corrected value
+            absoluteChange: -0.442,
+            percentChange: -1.68,
+            description: "Total income before financial items and tax."
+        },
+        {
+            category: "Raw Materials and Consumables", // Label updated
             fy25: 21.33,
             fy26: 20.66,
             absoluteChange: -0.67,
             percentChange: -3.15,
-            description: "Direct procurement, manufacturing input, and supply-chain logistics costs."
+            description: "Direct procurement and supply-chain costs."
         },
         {
             category: "Other Operating Expenses & Labor (OpEx)",
@@ -38,15 +54,7 @@ window.ikeaFinancialData = {
             fy26: 3.75,
             absoluteChange: 0.50,
             percentChange: 15.22,
-            description: "Includes wage inflation, digital investments, and restructuring costs."
-        },
-        {
-            category: "Operating Profit (EBIT)",
-            fy25: 1.73,
-            fy26: 1.46,
-            absoluteChange: -0.27,
-            percentChange: -15.42,
-            description: "Operating result before financial items and tax."
+            description: "Wage inflation and digital investments."
         },
         {
             category: "Net Profit",
@@ -54,33 +62,24 @@ window.ikeaFinancialData = {
             fy26: 1.40,
             absoluteChange: -0.10,
             percentChange: -6.48,
-            description: "Bottom-line profit cushioned by net financial income and currency derivative gains."
+            description: "Bottom-line profit."
+        },
+        // New External Metric (for Chart 4)
+        {
+            category: "Worldwide IKEA Retail Sales",
+            fy25: 44.6,
+            fy26: 43.8,
+            absoluteChange: -0.8,
+            percentChange: -1.79,
+            description: "Total sales by all franchisees to customers (external metric)."
         }
     ],
-    // Geographical distribution of operating income in EUR Millions (€M)
-    geoDistribution: {
-        fy25: [
-            { region: "The Netherlands", amount: 1177 },
-            { region: "European Union", amount: 14452 },
-            { region: "Rest of the world", amount: 10677 }
-        ],
-        fy26: [
-            { region: "The Netherlands", amount: 1292 },
-            { region: "European Union", amount: 14240 },
-            { region: "Rest of the world", amount: 10332 }
-        ]
-    },
     ratios: {
         fy25: {
             operatingMargin: 6.56,
             netMargin: 5.69
         },
         fy26: {
-            operatingMargin: 5.64,
-            netMargin: 5.41
-        }
-    }
-};
             operatingMargin: 5.64,
             netMargin: 5.41
         }
