@@ -1,7 +1,7 @@
 /**
  * Inter IKEA Group Cleaned Financial Dataset (FY25 vs. FY26)
  * Source: Inter IKEA Holding B.V. Annual Reports (FY25 and FY26)
- * Units: EUR Billions (€B)
+ * Units: EUR Billions (€B) / EUR Millions (€M) where specified
  */
 
 window.ikeaFinancialData = {
@@ -13,7 +13,7 @@ window.ikeaFinancialData = {
             fy26: "1 September 2025 – 31 August 2026"
         },
         sampleSizeN: 2,
-        notes: "Excludes Ingka Group retail operations. Figures reported in EUR Billions."
+        notes: "Excludes Ingka Group retail operations."
     },
     metrics: [
         {
@@ -57,16 +57,27 @@ window.ikeaFinancialData = {
             description: "Bottom-line profit cushioned by net financial income and currency derivative gains."
         }
     ],
+    // Geographical distribution of operating income in EUR Millions (€M)
+    geoDistribution: {
+        fy25: [
+            { region: "The Netherlands", amount: 1177 },
+            { region: "European Union", amount: 14452 },
+            { region: "Rest of the world", amount: 10677 }
+        ],
+        fy26: [
+            { region: "The Netherlands", amount: 1292 },
+            { region: "European Union", amount: 14240 },
+            { region: "Rest of the world", amount: 10332 }
+        ]
+    },
     ratios: {
         fy25: {
             operatingMargin: 6.56,
-            netMargin: 5.69,
-            avgFTE: 25971
+            netMargin: 5.69
         },
         fy26: {
             operatingMargin: 5.64,
-            netMargin: 5.41,
-            avgFTE: 26826
+            netMargin: 5.41
         }
     }
 };
