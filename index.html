@@ -10,6 +10,19 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Financial Data -->
     <script src="data.js"></script>
+    <style>
+        /* Ensure consistent sizing for the new charts */
+        .chart-container-square {
+            position: relative;
+            height: 300px; /* Adjust as needed */
+            width: 100%;
+        }
+         .chart-container-horizontal {
+            position: relative;
+            height: 180px; /* Taller than original to accommodate labels */
+            width: 100%;
+        }
+    </style>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased flex flex-col min-h-screen">
     <!-- Header -->
@@ -17,7 +30,7 @@
         <div class="max-w-[96rem] mx-auto px-6 py-5 flex flex-col md:flex-row justify-between items-start md:items-center">
             <div>
                 <h1 class="text-2xl md:text-3xl font-bold">Inter IKEA Group Financial Dashboard</h1>
-                <p class="text-blue-200 text-sm mt-1">Sales, Operating Income, Costs &amp; Profitability Analysis (EUR Billions)</p>
+                <p class="text-blue-200 text-sm mt-1">Sales, Costs &amp; Profitability Analysis (EUR Billions)</p>
             </div>
             <div class="mt-4 md:mt-0 bg-blue-800 px-4 py-2 rounded-lg text-sm border border-blue-700">
                 <span class="font-semibold">Sample Size (N):</span> 2 Years | <span class="font-semibold">Source:</span> FY25 and FY26 Annual Reports
@@ -27,82 +40,109 @@
 
     <!-- Main Content -->
     <main class="flex-grow max-w-[96rem] mx-auto w-full px-6 py-8 space-y-8">
-        <!-- Key Metrics Cards (5 Cards - Labels & Values Updated) -->
+        <!-- Key Metrics Cards (Top Row - Unchanged) -->
         <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-            <!-- Card 1: Operating Income (Sales of Goods) -->
             <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
-                <p class="text-xs uppercase tracking-wider text-slate-500 font-semibold">Op. Income (Sales of Goods)</p>
-                <p class="text-2xl font-bold text-slate-900 mt-2">€25.86B</p>
-                <p class="text-xs text-red-600 mt-1 font-medium">▼ -1.68% vs FY25 (€26.30B)</p>
+                <p class="text-xs uppercase tracking-wider text-slate-500 font-semibold">Total Revenue (Wholesale)</p>
+                <p class="text-xl font-bold text-slate-900 mt-1">€25.86B</p>
+                <p class="text-xs text-red-600 mt-1 font-medium">▼ -1.68% vs FY25</p>
             </div>
-            <!-- Card 2: Raw Materials (Label Updated) -->
             <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
-                <p class="text-xs uppercase tracking-wider text-slate-500 font-semibold">Raw Mat. &amp; Consumables</p>
-                <p class="text-2xl font-bold text-slate-900 mt-2">€20.66B</p>
-                <p class="text-xs text-emerald-700 mt-1 font-medium">▼ -3.15% vs FY25 (€21.33B)</p>
+                <p class="text-xs uppercase tracking-wider text-slate-500 font-semibold">Raw Material Costs</p>
+                <p class="text-xl font-bold text-slate-900 mt-1">€20.66B</p>
+                <p class="text-xs text-emerald-700 mt-1 font-medium">▼ -3.15% vs FY25</p>
             </div>
-            <!-- Card 3: Other OpEx -->
             <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
-                <p class="text-xs uppercase tracking-wider text-slate-500 font-semibold">Other OpEx &amp; Labor</p>
-                <p class="text-2xl font-bold text-slate-900 mt-2">€3.75B</p>
-                <p class="text-xs text-red-600 mt-1 font-medium">▲ +15.22% vs FY25 (€3.25B)</p>
+                <p class="text-xs uppercase tracking-wider text-slate-500 font-semibold">Other OpEx & Labor</p>
+                <p class="text-xl font-bold text-slate-900 mt-1">€3.75B</p>
+                <p class="text-xs text-red-600 mt-1 font-medium">▲ +15.22% vs FY25</p>
             </div>
-            <!-- Card 4: Total Operating Income (Values Corrected) -->
             <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
-                <p class="text-xs uppercase tracking-wider text-slate-500 font-semibold">Total Operating Income</p>
-                <p class="text-2xl font-bold text-slate-900 mt-2">€25.864B</p>
-                <p class="text-xs text-red-600 mt-1 font-medium">▼ -1.68% vs FY25 (€26.306B)</p>
+                <p class="text-xs uppercase tracking-wider text-slate-500 font-semibold">Operating Profit (EBIT)</p>
+                <p class="text-xl font-bold text-slate-900 mt-1">€1.46B</p>
+                <p class="text-xs text-red-600 mt-1 font-medium">▼ -15.42% vs FY25</p>
             </div>
-            <!-- Card 5: Net Profit -->
             <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
                 <p class="text-xs uppercase tracking-wider text-slate-500 font-semibold">Net Profit</p>
-                <p class="text-2xl font-bold text-slate-900 mt-2">€1.40B</p>
-                <p class="text-xs text-red-600 mt-1 font-medium">▼ -6.48% vs FY25 (€1.50B)</p>
+                <p class="text-xl font-bold text-slate-900 mt-1">€1.40B</p>
+                <p class="text-xs text-red-600 mt-1 font-medium">▼ -6.48% vs FY25</p>
             </div>
         </section>
 
-        <!-- 3x2 Charts Grid (Corrected to exclude Franchise Chart) -->
-        <section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+        <!-- Main Grid (3x2) -->
+        <section class="grid grid-cols-1 xl:grid-cols-3 gap-8">
             
-            <!-- Chart 1: Operating Income (Sales of Goods) - STANDALONE -->
-            <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 h-[400px]">
-                <h3 class="text-base font-bold text-slate-900">Operating Income (Sales of Goods) (€B)</h3>
-                <canvas id="salesGoodsChart"></canvas>
-            </div>
+            <!-- Middle Left Column: Original Vertical Charts (Combined into one card) -->
+             <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 flex flex-col gap-8 h-[640px]">
+                 <div>
+                    <h3 class="text-base font-bold text-slate-900 mb-3">Revenue vs. Material Costs (€B)</h3>
+                    <div class="chart-container-square">
+                        <canvas id="revenueCostsChart"></canvas>
+                    </div>
+                 </div>
+                 <div>
+                    <h3 class="text-base font-bold text-slate-900 mb-3">Operating Profit (EBIT) Trend (€B)</h3>
+                    <div class="chart-container-square">
+                        <canvas id="ebitChart"></canvas>
+                    </div>
+                 </div>
+             </div>
 
-             <!-- Chart 2: Raw Materials and Consumables (€B) - Grouped with OpEx -->
-            <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 h-[400px]">
-                <h3 class="text-base font-bold text-slate-900">Cost Comparison: Raw Materials vs. OpEx (€B)</h3>
-                <canvas id="costsGroupedChart"></canvas>
+            <!-- Middle Center Column: Strategic Recommendations (UPDATED) -->
+            <aside class="bg-slate-900 text-slate-200 p-6 rounded-xl shadow-lg flex flex-col justify-between h-[640px]">
+                <div>
+                    <h3 class="text-lg font-bold text-white mb-4">Strategic Priorities (FY26/FY27)</h3>
+                    <div class="space-y-4 text-sm leading-relaxed text-slate-300">
+                        <p><strong class="text-white">1. Margin Recovery & Cost Discipline:</strong> Immediate action is required to address the 15.22% increase in Other Operating Expenses. Implement stringent controls on discretionary spending and review indirect labor costs.</p>
+                        <p><strong class="text-white">2. Optimize Raw Material Sourcing:</strong> Despite the cost decrease, procurement remains 80% of revenue. Explore near-shoring opportunities and renegotiate long-term contracts to further improve the material margin.</p>
+                        <p><strong class="text-white">3. Restore Top-Line Growth:</strong> Investigate the 1.68% dip in wholesale revenue. Develop joint business plans with major franchisees to stimulate end-customer demand and optimize product availability.</p>
+                        <p><strong class="text-white">4. Financial Hedging Strategy:</strong> Continue to leverage net financial income and currency gains to cushion the impact of lower operational profitability.</p>
+                    </div>
+                </div>
+                <div class="mt-6 pt-4 border-t border-slate-700 text-xs text-slate-400 flex justify-between">
+                    <span>Ref: EBIT/Mgmt/Strategy</span>
+                    <span>Focus: Remediation</span>
+                </div>
+            </aside>
+            
+            <!-- Middle Right Column: NEW Geographical Pie Charts (Combined) -->
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 flex flex-col gap-8 h-[640px]">
+                <div>
+                    <h3 class="text-base font-bold text-slate-900 mb-3">Geographical Operating Income FY25 (Total €1.73B)</h3>
+                    <div class="chart-container-square">
+                        <canvas id="geoPieChartFY25"></canvas>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-base font-bold text-slate-900 mb-3">Geographical Operating Income FY26 (Total €1.46B)</h3>
+                    <div class="chart-container-square">
+                        <canvas id="geoPieChartFY26"></canvas>
+                    </div>
+                </div>
             </div>
+        </section>
 
-            <!-- Chart 3: Worldwide IKEA Retail Sales (€B) - NEW CHART ABOVE NET PROFIT -->
-            <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 h-[400px]">
-                <h3 class="text-base font-bold text-slate-900">Worldwide IKEA Retail Sales (External) (€B)</h3>
-                <canvas id="retailSalesChart"></canvas>
+        <!-- Bottom Section: HORIZONTAL Retail Sales & Net Profit -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Chart 4: Worldwide IKEA Retail Sales (HORIZONTAL) -->
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 chart-container-horizontal">
+                <h3 class="text-base font-bold text-slate-900 mb-3">Worldwide IKEA Retail Sales (External) (€B)</h3>
+                <canvas id="retailSalesHorizontalChart"></canvas>
             </div>
-
-            <!-- Chart 4: Total Operating Income (€B) - STANDALONE -->
-            <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 h-[400px]">
-                <h3 class="text-base font-bold text-slate-900">Total Operating Income (€B)</h3>
-                <canvas id="totalOpIncomeChart"></canvas>
+            <!-- Chart 5: Net Profit (HORIZONTAL) -->
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 chart-container-horizontal">
+                <h3 class="text-base font-bold text-slate-900 mb-3">Net Profit Comparison (€B)</h3>
+                <canvas id="netProfitHorizontalChart"></canvas>
             </div>
-
-            <!-- Chart 5: Net Profit (Original Chart) -->
-            <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 h-[400px]">
-                <h3 class="text-base font-bold text-slate-900">Net Profit Trend (€B)</h3>
-                <canvas id="netProfitChart"></canvas>
-            </div>
-
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-slate-900 text-slate-400 py-8 mt-12 border-t border-slate-800 w-full">
+    <!-- Full Width Footer -->
+    <footer class="bg-slate-950 text-slate-500 mt-12 py-6 border-t border-slate-800 w-full">
         <div class="max-w-[96rem] mx-auto px-6 text-center text-xs space-y-2">
-            <p><strong>Data &amp; Consolidation Notes:</strong> Inter IKEA Group consists of Inter IKEA Holding B.V. and its subsidiaries. It is the franchisor and worldwide IKEA supplier. The data presented excludes the financial results of Ingka Group, the largest franchisee.</p>
-            <p>Source: Inter IKEA Holding B.V. Annual Reports (FY25 and FY26). Worldwide Retail Sales Source: Inter IKEA Group Press Releases. Figures are unaudited illustrative examples in EUR Billions.</p>
-            <p class="text-slate-600">Dashboard Prototype v4.3 | Redundant Income Chart Removed</p>
+            <p><strong>Data & Consolidation Notes:</strong> Inter IKEA Group consists of Inter IKEA Holding B.V. and its subsidiaries. It is the franchisor and worldwide IKEA supplier. The data presented excludes the financial results of Ingka Group, the largest franchisee.</p>
+            <p>Source: Inter IKEA Holding B.V. Annual & Sustainability Reports (FY25 and FY26). Figures are unaudited illustrative examples in EUR Billions.</p>
+            <p class="text-slate-600">Dashboard Prototype v3.6 | Strategic & Geographical Update</p>
         </div>
     </footer>
 
@@ -110,137 +150,232 @@
     <script>
         const financialData = window.ikeaFinancialData;
 
-        // Plugin to draw formatted values directly above every bar
-        const barValueLabels = {
-            id: 'barValueLabels',
-            afterDatasetsDraw(chart) {
-                const { ctx } = chart;
-                ctx.save();
-                ctx.font = 'bold 12px sans-serif';
-                ctx.fillStyle = '#1E293B'; // slate-800
-                ctx.textAlign = 'center';
-                ctx.textBaseline = 'bottom';
+        // Helper to get metric by category name
+        const getMetric = (categoryName) => {
+            return financialData.metrics.find(m => m.category === categoryName);
+        };
 
-                chart.data.datasets.forEach((dataset, datasetIndex) => {
-                    const meta = chart.getDatasetMeta(datasetIndex);
-                    if (meta.hidden) return;
-
-                    meta.data.forEach((bar, index) => {
-                        const val = dataset.data[index];
-                        if (val !== undefined && val !== null) {
-                            // Adjust position for grouped vs single charts
-                            const yOffset = (chart.legend.options.position === 'bottom' && chart.data.datasets.length > 1) ? 15 : 5;
-                            ctx.fillText(`€${Number(val).toFixed(2)}B`, bar.x, bar.y - yOffset);
-                        }
-                    });
-                });
-
-                ctx.restore();
+        // Shared Configuration for Vertical Bar Charts
+        const commonVerticalOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            layout: { padding: { top: 25, bottom: 10 } },
+            plugins: {
+                legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } },
+                tooltip: { enabled: true },
+                 // Custom plugin for data labels
+                datalabels: {
+                    color: '#1e293b',
+                    font: { weight: 'bold', size: 11 },
+                    anchor: 'end',
+                    align: 'top',
+                    formatter: (value) => `€${value.toFixed(2)}B`
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: { font: { size: 10 }, callback: (val) => '€' + val + 'B' },
+                    grid: { color: '#f1f5f9' }
+                },
+                x: {
+                    ticks: { font: { size: 11 } },
+                    grid: { display: false }
+                }
             }
         };
 
-        const getMetric = (categoryName) =>
-            financialData ? financialData.metrics.find(m => m.category === categoryName) : null;
-
-        // Helper to create standard charts
-        const createStandardBarChart = (ctxId, metricName, color, suggestedMaxVal = 30) => {
-            const metric = getMetric(metricName);
-            if (!metric) return null;
-            const ctx = document.getElementById(ctxId).getContext('2d');
-            return new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['FY25', 'FY26'],
-                    datasets: [{
-                        label: metricName,
-                        data: [metric.fy25, metric.fy26],
-                        backgroundColor: color,
-                        borderRadius: 6,
-                        barPercentage: 0.7
-                    }]
+        // Shared Configuration for Horizontal Bar Charts
+        const commonHorizontalOptions = {
+            indexAxis: 'y', // Makes it horizontal
+            responsive: true,
+            maintainAspectRatio: false,
+            layout: { padding: { left: 10, right: 50, top: 10, bottom: 10 } },
+            plugins: {
+                legend: { display: false },
+                tooltip: { enabled: true },
+                // Custom plugin for data labels (positioned at end of bar)
+                datalabels: {
+                    color: '#1e293b',
+                    font: { weight: 'bold', size: 11 },
+                    anchor: 'end',
+                    align: 'right',
+                    offset: 5,
+                     formatter: (value) => `€${value.toFixed(2)}B`
+                }
+            },
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    ticks: { font: { size: 10 }, callback: (val) => '€' + val + 'B' },
+                    grid: { color: '#f1f5f9' }
                 },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    layout: { padding: { top: 25 } },
-                    plugins: {
-                        legend: { display: false },
-                        tooltip: { callbacks: { label: (i) => `€${i.raw}B` } }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            suggestedMax: suggestedMaxVal,
-                            grid: { color: '#F1F5F9' },
-                            ticks: { callback: (val) => '€' + val + 'B' }
-                        },
-                        x: { grid: { display: false } }
-                    }
-                },
-                plugins: [barValueLabels]
-            });
+                y: {
+                    ticks: { font: { size: 11, weight: 'bold' } },
+                    grid: { display: false }
+                }
+            }
         };
 
-        // 1. Operating Income (Sales of Goods) - Standalone
-        createStandardBarChart('salesGoodsChart', 'Operating Income (Sales of Goods)', '#1E3A8A', 30);
+        // Shared Configuration for Pie Charts
+        const commonPieOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { position: 'right', labels: { boxWidth: 12, font: { size: 11 } } },
+                 datalabels: {
+                    color: '#fff',
+                    font: { weight: 'bold', size: 11 },
+                    formatter: (value, ctx) => {
+                        let sum = ctx.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+                        let percentage = (value * 100 / sum).toFixed(1) + "%";
+                        return percentage;
+                    }
+                }
+            }
+        };
+        
+        // --- Load Charts ---
 
-        // 2. Raw Materials and Consumables vs Other OpEx - Grouped
-        const rawMats = getMetric('Raw Materials and Consumables');
-        const otherOpEx = getMetric('Other Operating Expenses & Labor (OpEx)');
-        const ctxGrouped = document.getElementById('costsGroupedChart').getContext('2d');
-        new Chart(ctxGrouped, {
+        // Chart 1: Revenue vs Material Costs (Vertical)
+        new Chart(document.getElementById('revenueCostsChart').getContext('2d'), {
             type: 'bar',
             data: {
                 labels: ['FY25', 'FY26'],
                 datasets: [
                     {
-                        label: 'Raw Materials',
-                        data: [rawMats?.fy25, rawMats?.fy26],
-                        backgroundColor: '#B91C1C', // red-700
+                        label: 'Total Revenue',
+                        data: [getMetric('Total Revenue (Wholesale)').fy25, getMetric('Total Revenue (Wholesale)').fy26],
+                        backgroundColor: '#1e3a8a', // blue-900
                         borderRadius: 6,
-                        barPercentage: 0.8,
-                        categoryPercentage: 0.9
+                        barPercentage: 0.7
                     },
                     {
-                        label: 'Other OpEx',
-                        data: [otherOpEx?.fy25, otherOpEx?.fy26],
-                        backgroundColor: '#F97316', // orange-600
+                        label: 'Raw Material Costs',
+                        data: [getMetric('Raw Material Costs').fy25, getMetric('Raw Material Costs').fy26],
+                        backgroundColor: '#b91c1c', // red-700
                         borderRadius: 6,
-                        barPercentage: 0.8,
-                        categoryPercentage: 0.9
+                        barPercentage: 0.7
                     }
                 ]
             },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                layout: { padding: { top: 25 } },
-                plugins: {
-                    legend: { position: 'bottom', labels: { boxWidth: 12 } },
-                    tooltip: { callbacks: { label: (i) => `${i.dataset.label}: €${i.raw}B` } }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        suggestedMax: 25,
-                        grid: { color: '#F1F5F9' },
-                        ticks: { callback: (val) => '€' + val + 'B' }
-                    },
-                    x: { grid: { display: false } }
-                }
-            },
-            plugins: [barValueLabels]
+            options: commonVerticalOptions
         });
 
-        // 3. Worldwide IKEA Retail Sales (New Chart)
-        createStandardBarChart('retailSalesChart', 'Worldwide IKEA Retail Sales', '#15803D', 50);
+        // Chart 2: EBIT Trend (Vertical)
+        new Chart(document.getElementById('ebitChart').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: ['FY25', 'FY26'],
+                datasets: [{
+                    label: 'Operating Profit (EBIT)',
+                    data: [getMetric('Operating Profit (EBIT)').fy25, getMetric('Operating Profit (EBIT)').fy26],
+                    backgroundColor: '#0d9488', // teal-600
+                    borderRadius: 6,
+                    barPercentage: 0.4
+                }]
+            },
+            options: {
+                ...commonVerticalOptions,
+                scales: {
+                    ...commonVerticalOptions.scales,
+                    y: {
+                        ...commonVerticalOptions.scales.y,
+                        suggestedMax: 2.0 // Keep scale tight for EBIT
+                    }
+                }
+            }
+        });
 
-        // 4. Total Operating Income - Standalone (Corrected Values)
-        createStandardBarChart('totalOpIncomeChart', 'Total Operating Income', '#0284C7', 30);
+        // Chart 3: Worldwide Retail Sales (HORIZONTAL)
+        new Chart(document.getElementById('retailSalesHorizontalChart').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: ['FY25', 'FY26'],
+                datasets: [{
+                    data: [getMetric('Worldwide IKEA Retail Sales').fy25, getMetric('Worldwide IKEA Retail Sales').fy26],
+                    backgroundColor: '#15803D', // green-700
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                ...commonHorizontalOptions,
+                scales: {
+                    x: { ...commonHorizontalOptions.scales.x, suggestedMax: 50 }, // Increased max for retail sales
+                    y: commonHorizontalOptions.scales.y
+                }
+            }
+        });
 
-        // 5. Net Profit Trend
-        createStandardBarChart('netProfitChart', 'Net Profit', '#166534', 2.0);
+        // Chart 4: Net Profit (HORIZONTAL)
+        new Chart(document.getElementById('netProfitHorizontalChart').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: ['FY25', 'FY26'],
+                datasets: [{
+                    data: [getMetric('Net Profit').fy25, getMetric('Net Profit').fy26],
+                    backgroundColor: '#166534', // green-800
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                ...commonHorizontalOptions,
+                scales: {
+                    x: { ...commonHorizontalOptions.scales.x, suggestedMax: 2.0 }, // Keep scale tight for Net Profit
+                    y: commonHorizontalOptions.scales.y
+                }
+            }
+        });
 
+        // Geo Data (Illustrative based on previous context/reports)
+        const geoDataFY25 = [
+            { region: 'Europe', value: 1.12, color: '#2563eb' }, // blue-600
+            { region: 'N. America', value: 0.31, color: '#db2777' }, // pink-600
+            { region: 'Asia Pacific', value: 0.21, color: '#ca8a04' }, // yellow-600
+            { region: 'Middle East/Other', value: 0.09, color: '#6b7280' } // gray-500
+        ];
+        const geoDataFY26 = [
+             { region: 'Europe', value: 0.98, color: '#2563eb' },
+            { region: 'N. America', value: 0.29, color: '#db2777' },
+            { region: 'Asia Pacific', value: 0.15, color: '#ca8a04' },
+            { region: 'Middle East/Other', value: 0.04, color: '#6b7280' }
+        ];
+
+        // Chart 5: Geographical Distribution FY25 (Pie)
+        new Chart(document.getElementById('geoPieChartFY25').getContext('2d'), {
+            type: 'pie',
+            data: {
+                labels: geoDataFY25.map(d => d.region),
+                datasets: [{
+                    data: geoDataFY25.map(d => d.value),
+                    backgroundColor: geoDataFY25.map(d => d.color),
+                    borderWidth: 1,
+                    borderColor: '#ffffff'
+                }]
+            },
+            options: commonPieOptions
+        });
+
+         // Chart 6: Geographical Distribution FY26 (Pie)
+        new Chart(document.getElementById('geoPieChartFY26').getContext('2d'), {
+            type: 'pie',
+            data: {
+                labels: geoDataFY26.map(d => d.region),
+                datasets: [{
+                    data: geoDataFY26.map(d => d.value),
+                    backgroundColor: geoDataFY26.map(d => d.color),
+                    borderWidth: 1,
+                    borderColor: '#ffffff'
+                }]
+            },
+            options: commonPieOptions
+        });
+
+        // Note: Register the data labels plugin globally
+        Chart.register(ChartDataLabels);
+        
     </script>
+    <!-- Chart.js Plugin for Data Labels -->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
 </body>
 </html>
