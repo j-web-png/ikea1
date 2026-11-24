@@ -33,6 +33,18 @@
             height: 280px;
         }
 
+        /* Financial graphs arranged together */
+        .financial-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+            align-items: stretch;
+        }
+
+        .financial-grid .section-card {
+            min-width: 0;
+        }
+
         .section-card {
             background: white;
             padding: 18px;
@@ -53,6 +65,11 @@
 
             .pie-container {
                 height: 250px;
+            }
+
+            .financial-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
             }
         }
 
@@ -166,81 +183,87 @@
 
     </section>
 
-    <!-- TOTAL OPERATING INCOME -->
 
-    <section class="section-card">
+    <!-- FINANCIAL GRAPHS -->
 
-        <h2 class="text-lg font-bold text-slate-900 mb-2">
-            Total Operating Income (€B)
-        </h2>
+    <section class="financial-grid">
 
-        <p class="text-sm text-slate-600 mb-3">
-            Comparison of total operating income across FY2024–FY2026.
-        </p>
+        <!-- TOTAL OPERATING INCOME -->
 
-        <div class="chart-container">
-            <canvas id="salesGoodsChart"></canvas>
+        <div class="section-card">
+
+            <h2 class="text-lg font-bold text-slate-900 mb-2">
+                Total Operating Income (€B)
+            </h2>
+
+            <p class="text-sm text-slate-600 mb-3">
+                Comparison of total operating income across FY2024–FY2026.
+            </p>
+
+            <div class="chart-container">
+                <canvas id="salesGoodsChart"></canvas>
+            </div>
+
+        </div>
+
+
+        <!-- WORLDWIDE RETAIL SALES -->
+
+        <div class="section-card">
+
+            <h2 class="text-lg font-bold text-slate-900 mb-2">
+                Worldwide IKEA Retail Sales (€B)
+            </h2>
+
+            <p class="text-sm text-slate-600 mb-3">
+                Horizontal comparison of worldwide IKEA retail sales across three financial years.
+            </p>
+
+            <div class="chart-container">
+                <canvas id="retailSalesChart"></canvas>
+            </div>
+
+        </div>
+
+
+        <!-- NET PROFIT -->
+
+        <div class="section-card">
+
+            <h2 class="text-lg font-bold text-slate-900 mb-2">
+                Net Profit (€B)
+            </h2>
+
+            <p class="text-sm text-slate-600 mb-3">
+                Horizontal comparison of net profit across FY2024–FY2026.
+            </p>
+
+            <div class="chart-container">
+                <canvas id="netProfitChart"></canvas>
+            </div>
+
+        </div>
+
+
+        <!-- COST STRUCTURE -->
+
+        <div class="section-card">
+
+            <h2 class="text-lg font-bold text-slate-900 mb-2">
+                Raw Materials, Consumables & Other Operating Expenses (€B)
+            </h2>
+
+            <p class="text-sm text-slate-600 mb-3">
+                Comparison of raw materials and consumables against other operating expenses and labour.
+            </p>
+
+            <div class="chart-container">
+                <canvas id="costComparisonChart"></canvas>
+            </div>
+
         </div>
 
     </section>
-
-
-    <!-- WORLDWIDE RETAIL SALES -->
-
-    <section class="section-card">
-
-        <h2 class="text-lg font-bold text-slate-900 mb-2">
-            Worldwide IKEA Retail Sales (€B)
-        </h2>
-
-        <p class="text-sm text-slate-600 mb-3">
-            Horizontal comparison of worldwide IKEA retail sales across three financial years.
-        </p>
-
-        <div class="chart-container">
-            <canvas id="retailSalesChart"></canvas>
-        </div>
-
-    </section>
-
-
-    <!-- NET PROFIT -->
-
-    <section class="section-card">
-
-        <h2 class="text-lg font-bold text-slate-900 mb-2">
-            Net Profit (€B)
-        </h2>
-
-        <p class="text-sm text-slate-600 mb-3">
-            Horizontal comparison of net profit across FY2024–FY2026.
-        </p>
-
-        <div class="chart-container">
-            <canvas id="netProfitChart"></canvas>
-        </div>
-
-    </section>
-
-
-    <!-- COST STRUCTURE -->
-
-    <section class="section-card">
-
-        <h2 class="text-lg font-bold text-slate-900 mb-2">
-            Raw Materials, Consumables & Other Operating Expenses (€B)
-        </h2>
-
-        <p class="text-sm text-slate-600 mb-3">
-            Comparison of raw materials and consumables against other operating expenses and labour.
-        </p>
-
-        <div class="chart-container">
-            <canvas id="costComparisonChart"></canvas>
-        </div>
-
-    </section>
-
 
     <!-- ANALYSIS AND FIGURE COMPARISONS -->
 
@@ -406,7 +429,7 @@
 // LOAD FINANCIAL DATA
 // ==========================================
 
- financial = window.ikeaFinancialData;
+const financial = window.ikeaFinancialData;
 
 if (!financial) {
     throw new Error(
@@ -414,7 +437,7 @@ if (!financial) {
     );
 }
 
- getMetric = name => financial.metrics.find(
+const getMetric = name => financial.metrics.find(
     item => item.category === name
 );
 
@@ -452,10 +475,10 @@ const commonOptions = {
 
     layout: {
         padding: {
-            top: 22,
-            right: 45,
-            bottom: 5,
-            left: 5
+            top: 30,
+            right: 55,
+            bottom: 8,
+            left: 8
         }
     },
 
@@ -504,7 +527,6 @@ const commonOptions = {
     }
 };
 
-
 // ==========================================
 // BAR VALUE LABELS
 // ==========================================
@@ -517,7 +539,7 @@ const valueLabels = {
 
         if (chart.config.type !== "bar") return;
 
-        const { ctx } = chart;
+        const { ctx, chartArea } = chart;
 
         chart.data.datasets.forEach((dataset, datasetIndex) => {
 
@@ -540,19 +562,23 @@ const valueLabels = {
                 if (chart.options.indexAxis === "y") {
 
                     ctx.textAlign = "left";
+
+                    const label = "€" + Number(value).toFixed(2) + "B";
+
                     ctx.fillText(
-                        "€" + Number(value).toFixed(2) + "B",
-                        position.x + 7,
+                        label,
+                        Math.min(position.x + 9, chartArea.right - 48),
                         position.y
                     );
 
                 } else {
 
                     ctx.textAlign = "center";
+
                     ctx.fillText(
                         "€" + Number(value).toFixed(2) + "B",
                         position.x,
-                        position.y - 10
+                        position.y - 13
                     );
 
                 }
@@ -572,7 +598,6 @@ Chart.register(valueLabels);
 
 // ==========================================
 // COMMON BAR DATASET SETTINGS
-// THICKER BARS AND LESS EMPTY SPACE
 // ==========================================
 
 function createBarDataset(label, data, backgroundColor) {
@@ -584,15 +609,16 @@ function createBarDataset(label, data, backgroundColor) {
         borderRadius: 4,
 
         // Thicker bars
-        barThickness: 26,
-        maxBarThickness: 30,
+        barThickness: 32,
+        maxBarThickness: 36,
 
-        // Bring bars closer together
-        categoryPercentage: 0.90,
+        // Consistent spacing between bars
+        categoryPercentage: 0.85,
         barPercentage: 0.90
     };
 
 }
+
 
 // ==========================================
 // TOTAL OPERATING INCOME
@@ -694,8 +720,8 @@ new Chart(
 
                     borderRadius: 4,
 
-                    barThickness: 26,
-                    maxBarThickness: 30
+                    barThickness: 32,
+                    maxBarThickness: 36
                 }
 
             ]
@@ -773,8 +799,8 @@ new Chart(
 
                     borderRadius: 4,
 
-                    barThickness: 26,
-                    maxBarThickness: 30
+                    barThickness: 32,
+                    maxBarThickness: 36
                 }
 
             ]
@@ -895,7 +921,6 @@ new Chart(
 
     }
 );
-
 
 // ==========================================
 // PIE CHART PERCENTAGE LABELS
