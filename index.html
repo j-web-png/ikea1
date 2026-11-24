@@ -61,7 +61,7 @@
             </div>
         </section>
 
-        <!-- 3x2 Charts Grid -->
+        <!-- 3x2 Charts Grid (Corrected to exclude Franchise Chart) -->
         <section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
             
             <!-- Chart 1: Operating Income (Sales of Goods) - STANDALONE -->
@@ -76,25 +76,19 @@
                 <canvas id="costsGroupedChart"></canvas>
             </div>
 
-            <!-- Chart 3: Other OpEx & Labor (€B) - Grouped with Raw Mats -->
-             <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 h-[400px] flex flex-col">
-                <h3 class="text-base font-bold text-slate-900">Operating Income from Franchising (€B)</h3>
-                 <canvas id="franchiseIncomeChart"></canvas>
-            </div>
-
-             <!-- Chart 4: Worldwide IKEA Retail Sales (€B) - NEW CHART ABOVE NET PROFIT -->
+            <!-- Chart 3: Worldwide IKEA Retail Sales (€B) - NEW CHART ABOVE NET PROFIT -->
             <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 h-[400px]">
                 <h3 class="text-base font-bold text-slate-900">Worldwide IKEA Retail Sales (External) (€B)</h3>
                 <canvas id="retailSalesChart"></canvas>
             </div>
 
-            <!-- Chart 5: Total Operating Income (€B) - STANDALONE -->
+            <!-- Chart 4: Total Operating Income (€B) - STANDALONE -->
             <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 h-[400px]">
                 <h3 class="text-base font-bold text-slate-900">Total Operating Income (€B)</h3>
                 <canvas id="totalOpIncomeChart"></canvas>
             </div>
 
-            <!-- Chart 6: Net Profit (Original Chart) -->
+            <!-- Chart 5: Net Profit (Original Chart) -->
             <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 h-[400px]">
                 <h3 class="text-base font-bold text-slate-900">Net Profit Trend (€B)</h3>
                 <canvas id="netProfitChart"></canvas>
@@ -108,7 +102,7 @@
         <div class="max-w-[96rem] mx-auto px-6 text-center text-xs space-y-2">
             <p><strong>Data &amp; Consolidation Notes:</strong> Inter IKEA Group consists of Inter IKEA Holding B.V. and its subsidiaries. It is the franchisor and worldwide IKEA supplier. The data presented excludes the financial results of Ingka Group, the largest franchisee.</p>
             <p>Source: Inter IKEA Holding B.V. Annual Reports (FY25 and FY26). Worldwide Retail Sales Source: Inter IKEA Group Press Releases. Figures are unaudited illustrative examples in EUR Billions.</p>
-            <p class="text-slate-600">Dashboard Prototype v4.2 | Specific Income &amp; External Sales Breakdown</p>
+            <p class="text-slate-600">Dashboard Prototype v4.3 | Redundant Income Chart Removed</p>
         </div>
     </footer>
 
@@ -238,16 +232,13 @@
             plugins: [barValueLabels]
         });
 
-        // 3. Operating Income from Franchising
-        createStandardBarChart('franchiseIncomeChart', 'Operating Income from Franchising', '#0D9488', 15);
-
-        // 4. Worldwide IKEA Retail Sales (New Chart)
+        // 3. Worldwide IKEA Retail Sales (New Chart)
         createStandardBarChart('retailSalesChart', 'Worldwide IKEA Retail Sales', '#15803D', 50);
 
-        // 5. Total Operating Income - Standalone (Corrected Values)
+        // 4. Total Operating Income - Standalone (Corrected Values)
         createStandardBarChart('totalOpIncomeChart', 'Total Operating Income', '#0284C7', 30);
 
-        // 6. Net Profit Trend
+        // 5. Net Profit Trend
         createStandardBarChart('netProfitChart', 'Net Profit', '#166534', 2.0);
 
     </script>
